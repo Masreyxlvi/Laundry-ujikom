@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaketController;
 use App\Http\Controllers\OutletController;
 
 /*
@@ -21,3 +22,4 @@ Route::get('/', function () {
 });
 
 Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show');
+Route::resource('/paket', PaketController::class)->except('create', 'edit', 'show');
