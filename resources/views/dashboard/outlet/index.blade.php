@@ -35,12 +35,12 @@
 							<td>{{ $outlet->alamat }}</td>
 							<td>{{ $outlet->telp }}</td>
 							<td>
-								{{-- @include('dashboard.outlet.edit') --}}
-								{{-- <form action="/outlet/{{ $outlet->id }}" method="POST" class="d-inline">
+								@include('dashboard.outlet.edit')
+								<form action="/outlet/{{ $outlet->id }}" method="POST" class="d-inline">
 									@csrf
 									@method('DELETE')
 									<button type="submit" class="btn btn-danger border-0" onclick="return confirm('Yakin Ingin Dihapus')"><i class="mdi me-2 mdi-delete">Delete</i></button>
-								</form> --}}
+								</form>
 							</td>
 						</tr>
 						@endforeach

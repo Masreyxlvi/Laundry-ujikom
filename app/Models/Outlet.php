@@ -10,4 +10,9 @@ class Outlet extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function paket()
+    {
+        return $this->hasMany(Paket::class);
+    }
 }
