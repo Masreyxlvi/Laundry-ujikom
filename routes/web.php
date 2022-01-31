@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OutletController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ Route::get('/', function () {
         'title' => 'Dashboard'
     ]);
 });
+
+Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show');
