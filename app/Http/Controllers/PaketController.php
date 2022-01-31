@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Outlet;
 use App\Models\Paket;
+use App\Http\Requests\StorePaketRequest;
+use App\Http\Requests\UpdatePaketRequest;
+use App\Models\outlet;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaketController extends Controller
 {
@@ -17,7 +21,8 @@ class PaketController extends Controller
     {
         return view('dashboard.paket.index',[
             'pakets' => Paket::all(),
-            'outlets' => Outlet::all(),
+            'outlets' => outlet::all(),
+            // 'users' => User::where('id' , auth()->user()->id)->get(),
             'title' => 'Paket'
         ]);
     }
@@ -29,7 +34,9 @@ class PaketController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.paket.create',[
+            'outlets' => outlet::all()
+        ]);
     }
 
     /**
@@ -79,13 +86,24 @@ class PaketController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     *  @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Paket  $paket
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Paket $paket)
     {
-        //
+        $validate = $request->validate([
+            'outlet_id' => 'required',
+            'nama_paket' => 'required',
+            'jenis' => 'required',
+            'harga' => 'required',
+        ]);
+        // dd($validate);
+
+        Paket::where('id', $paket->id)
+                    ->update($validate);
+
+        return redirect('/paket')->with('succes', 'Data Has Been Updated!');
     }
 
     /**
@@ -96,6 +114,8 @@ class PaketController extends Controller
      */
     public function destroy(Paket $paket)
     {
-        //
+        Paket::destroy($paket->id);
+
+        return redirect('/paket')->with('succes', 'Data Has Been Deleted!!');
     }
 }

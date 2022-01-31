@@ -53,14 +53,14 @@
 							</td>
 							<td>{{ $paket->outlet->nama }}</td>
 							<td>{{ number_format($paket->harga) }}</td>
-							{{-- <td>
+							<td>
 								@include('dashboard.paket.edit')
 								<form action="/paket/{{ $paket->id }}" method="POST" class="d-inline">
 									@csrf
 									@method('DELETE')
 									<button type="submit" class="btn btn-danger border-0" onclick="return confirm('Yakin Ingin Dihapus')"><i class="mdi me-2 mdi-delete">Delete</i></button>
 								</form>
-							</td> --}}
+							</td>
 						</tr>
 						@endforeach
 					</tbody>
