@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('g
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show');
-Route::resource('/paket', PaketController::class)->except('create', 'edit', 'show');
-Route::resource('/member', MemberController::class)->except('create', 'edit', 'show');
+Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show')->middleware('auth');
+Route::resource('/paket', PaketController::class)->except('create', 'edit', 'show')->middleware('auth');
+Route::resource('/member', MemberController::class)->except('create', 'edit', 'show')->middleware('auth');
+Route::resource('/register', RegisterController::class)->middleware('auth');

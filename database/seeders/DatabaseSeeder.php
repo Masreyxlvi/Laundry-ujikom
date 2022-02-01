@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\outlet;
+use App\Models\Outlet;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        // outlet::factory(10)->create();
+        Outlet::factory(10)->create();
         User::create([
             'name' => 'Reyhan Tri Ramadan',
             'username' => 'Masrey',
