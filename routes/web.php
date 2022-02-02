@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 
@@ -28,6 +29,8 @@ Route::get('/dashboard', function () {
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/laporan', [LaporanController::class, 'laporan'])->middleware('auth');    
 
 Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show')->middleware('auth');
 Route::resource('/paket', PaketController::class)->except('create', 'edit', 'show')->middleware('auth');

@@ -22,7 +22,7 @@ class CreateTransaksisTable extends Migration
             $table->string('kode_invoice');
             $table->date('tgl');
             $table->date('batas_waktu');
-            $table->date('tgl_bayar');
+            $table->date('tgl_bayar')->nullable();
             $table->double('biaya_tambahan');
             $table->double('diskon');
             $table->double('pajak');

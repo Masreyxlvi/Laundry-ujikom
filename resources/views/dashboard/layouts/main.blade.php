@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('vendors') }}/assets/images/favicon.png">
     <!-- chartist CSS -->
     <link href="{{ asset('vendors') }}/assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('vendors') }}/assets/plugins/dataTables.net-bs4/dataTables.bootstrap4.css">
     <link href="{{ asset('vendors') }}/assets/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet">
     <link href="{{ asset('vendors') }}/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
     <!--This page css - Morris CSS -->
@@ -137,6 +138,7 @@
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!-- chartist chart -->
+    <script src="{{ asset('vendors') }}/assets/plugins/dataTables.net-bs4/dataTables.bootstrap4.js"></script>
     <script src="{{ asset('vendors') }}/assets/plugins/chartist-js/dist/chartist.min.js"></script>
     <script src="{{ asset('vendors') }}/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
     <!--c3 JavaScript -->
@@ -153,6 +155,33 @@
           });
         })
       </script>
+      <script>
+	(function($) {
+	'use strict';
+	$(function() {
+		$('#order-listing').DataTable({
+		"aLengthMenu": [
+			[5, 10, 15, -1],
+			[5, 10, 15, "All"]
+		],
+		"iDisplayLength": 10,
+		"language": {
+			search: ""
+		}
+		});
+		$('#order-listing').each(function() {
+		var datatable = $(this);
+		// SEARCH - Add the placeholder for Search and Turn this into in-line form control
+		var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+		search_input.attr('placeholder', 'Search');
+		search_input.removeClass('form-control-sm');
+		// LENGTH - Inline-Form control
+		var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+		length_sel.removeClass('form-control-sm');
+		});
+	});
+	})(jQuery);
+</script>	
       @stack('script')
 </body>
 

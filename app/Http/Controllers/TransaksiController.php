@@ -60,14 +60,14 @@ class TransaksiController extends Controller
             'member_id' => 'required',
             'paket_id' => 'required',
             'tgl' => 'required|date',
-            'tgl_bayar' => 'nullable|date',
+            'tgl_bayar' => 'nullable',
             'batas_waktu' => 'nullable|date',
             'diskon' => 'nullable',
             'pajak' => 'nullable',
             'biaya_tambahan' => 'nullable',
             'status' => 'required',
             'dibayar' => 'required',
-            'keterangan' => 'required',
+            'keterangan' => 'nullable',
             'qty' => 'required',
         ]);
         $validate['user_id'] = Auth::id();
