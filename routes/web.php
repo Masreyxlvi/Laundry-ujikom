@@ -6,6 +6,7 @@ use App\Http\Controllers\PaketController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,4 @@ Route::resource('/outlet', OutletController::class)->except('create', 'edit', 's
 Route::resource('/paket', PaketController::class)->except('create', 'edit', 'show')->middleware('auth');
 Route::resource('/member', MemberController::class)->except('create', 'edit', 'show')->middleware('auth');
 Route::resource('/register', RegisterController::class)->middleware('auth');
+Route::resource('/transaksi', TransaksiController::class)->middleware('auth');

@@ -35,13 +35,11 @@
 						<div class="mb-3 col-8">
 							<label for="Nama Outlet">Nama Outlet</label>
 							<select class="form-control js-example-basic-single w-100" id="Nama Outlet" name="outlet_id">
-								@foreach ($outlets as $outlet)
-								@if(old('outlet_id') == $outlet->id)
-									<option value="{{ $outlet->id }}" selected>{{ $outlet->nama }}</option>
-								@else
-									<option value="{{ $outlet->id }}">{{ $outlet->nama }}</option>
-								@endif
-							@endforeach
+								{{-- @foreach ($outlets as $outlet) --}}
+								@foreach ($users as $user)
+								<option value="{{ $user->outlet->id }}">{{ $user->outlet->nama }}</option>
+								@endforeach
+							{{-- @endforeach --}}
 							</select>
 						</div>
 						<div class="col-8 mb-3">

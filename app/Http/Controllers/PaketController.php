@@ -21,8 +21,8 @@ class PaketController extends Controller
     {
         return view('dashboard.paket.index',[
             'pakets' => Paket::all(),
-            'outlets' => outlet::all(),
-            // 'users' => User::where('id' , auth()->user()->id)->get(),
+            // 'outlets' => outlet::all(),
+            'users' => User::where('id' , auth()->user()->id)->get(),
             'title' => 'Paket'
         ]);
     }
