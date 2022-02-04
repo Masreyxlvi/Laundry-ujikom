@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\outlet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class OutletController extends Controller
 {
@@ -38,6 +39,8 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('management-outlet');
+
         $validate = $request->validate([
             'nama' => 'required',
             'alamat' => 'required',

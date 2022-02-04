@@ -57,7 +57,7 @@
 							<td>{{ $transaksi->status }}</td>
 							<td>
 								<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+								<input class="form-check-input dibayar" type="checkbox" id="flexSwitchCheckDefault"  {{ $cek = ($transaksi->dibayar == 'dibayar'? "checked" : " ") }}>
 								<label class="form-check-label" for="flexSwitchCheckDefault"></label>
 							  </div>
 							</td>
@@ -75,3 +75,19 @@
 		</div>
 	</div>
 @endsection
+@push('script')
+	<script>
+			$('#order-listing').on('click' , '.dibayar' , function(){
+			let no = $(this).closest('tr').find('td:eq(0)').text()
+			let checked = ($(this).closest('tr').find('.dibayar').is(':checked')?'dibayar':'belum_dibayar')
+			let data = {
+								kode_invoice:no,
+								status: checked,
+								_token: "{{ csrf_token() }}"
+								};
+			$.post('{{ route("dipenuhi") }}', data, function(msg){
+				alert(msg)
+			})
+		})	
+	</script>
+@endpush

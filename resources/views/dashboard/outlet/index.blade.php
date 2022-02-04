@@ -13,9 +13,11 @@
 			@endif
 
 			<!-- Button trigger modal -->
+			@can('management-outlet')
 			<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#Outlet">
 				Tambah Data
 			</button>
+			@endcan
 			<div class="table-responsive">
 				<table class="table user-table" id="order-listing">
 					<thead>
@@ -24,7 +26,9 @@
 							<th class="border-top-0">Nama</th>
 							<th class="border-top-0">Alamat</th>
 							<th class="border-top-0">Telp</th>
-							<th class="border-top-0">Action</th>
+							@can('management-outlet')
+							<th class="border-top-0">Action</th>	
+							@endcan
 						</tr>
 					</thead>
 					<tbody>
@@ -34,6 +38,7 @@
 							<td>{{ $outlet->nama }}</td>
 							<td>{{ $outlet->alamat }}</td>
 							<td>{{ $outlet->telp }}</td>
+							@can('management-outlet')
 							<td>
 								@include('dashboard.outlet.edit')
 								<form action="/outlet/{{ $outlet->id }}" method="POST" class="d-inline">
@@ -42,6 +47,7 @@
 									<button type="submit" class="btn btn-danger border-0" onclick="return confirm('Yakin Ingin Dihapus')"><i class="mdi me-2 mdi-delete">Delete</i></button>
 								</form>
 							</td>
+							@endcan
 						</tr>
 						@endforeach
 					</tbody>

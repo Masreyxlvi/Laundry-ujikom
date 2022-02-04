@@ -62,22 +62,11 @@
 				<!-- ============================================================== -->
 				<!-- User profile and search -->
 				<!-- ============================================================== -->
+				
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					<a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="/register/{{ Auth::id() }}/edit" id="navbarDropdown" >
 						<img src="{{ asset('vendors') }}/assets/images/users/1.jpg" alt="user" class="profile-pic me-2">Masrey
 					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a href="/register" class="dropdown-item">
-								<i class="mdi me-1 mdi-earth"></i>
-								Profil
-							</a>
-					</ul>
-					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a href="/profil" class="dropdown-item">
-								<i class="mdi me-1 mdi-account-multiple-plus"></i>
-								Tambah User
-							</a>
-					</ul>
 				</li>
 			</ul>
 		</div>

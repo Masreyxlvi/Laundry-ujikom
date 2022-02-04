@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Outlet;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +27,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('management-outlet', function (User $user) {
+            return $user->is_super == 1;
+        });
     }
 }

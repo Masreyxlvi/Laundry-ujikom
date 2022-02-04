@@ -56,8 +56,8 @@
 							  <th>Jenis</th>
 							  <th>Harga</th>
 							  <th>Qty</th>
-							  {{-- <th>Diskon</th> --}}
 							  <th>Total</th>
+							  <th>Ket</th>
 							  <th>Status</th>
 							</tr>
 					  </thead>

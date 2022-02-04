@@ -142,5 +142,15 @@ class TransaksiController extends Controller
     {
         //
     }
+
+    public function updateDipenuhi(Request $request){
+        $data = Transaksi::where('kode_invoice', $request->kode_invoice)->first();
+        $data->dibayar = $request->dibayar;
+        $update = $data->save;
+
+        if($update)
+        return 'data terpenuhi';
+        return 'Transaksi Sudah Dibayar';
+    }
 }
 

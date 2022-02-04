@@ -39,14 +39,14 @@
 			</select>
 		</div>
 	</div>
-	<div class="row justify-content-center">
+	{{-- <div class="row justify-content-center">
 		<div class="col-lg-12">
 			<div class="mt-4">
 				<h4 class="text-center" >Keterangan  </h4>
 				<textarea type="text" name="keterangan" style="height: 100px" class="form-control @error('keterangan') is-invalid @enderror"  id="tgl"  value="{{ old('keterangan') }}"></textarea>
 			</div>
 		</div>
-	</div>
+	</div> --}}
 	<div class="mt-3">
 		<div class="d-grid gap-2">
 			<button type="submit" class="btn btn-primary">Submit</button>

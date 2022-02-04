@@ -16,4 +16,6 @@ class LaporanController extends Controller
             'title' => 'Laporan'
         ]);
     }
+
+   
 }

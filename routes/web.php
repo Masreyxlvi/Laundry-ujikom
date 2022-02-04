@@ -8,6 +8,8 @@ use App\Http\Controllers\OutletController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
+use App\Models\Transaksi;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +24,16 @@ use App\Http\Controllers\TransaksiController;
 
 Route::get('/dashboard', function () {
     return view('dashboard.index', [
-        'title' => 'Dashboard'
+        'title' => 'Dashboard',
+        'users' => User::where('id', auth()->user()->id)->get()
     ]);
 });
 
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::post('/laporan/dipenuhi' , [TransaksiController::class,  'updateDipenuhi'])->name('dipenuhi');
 
 Route::get('/laporan', [LaporanController::class, 'laporan'])->middleware('auth');    
 

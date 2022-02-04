@@ -81,6 +81,7 @@
 					data += '<td><input type="number" value="1" min="1" class="form-control-sm border-0 qty" autofocus name="qty[]" ></td>';
 					// data += '<td><input type="text" value="0"  class="diskon" name="diskon[]" ></td>';
 					data += '<td><input type="text" readonly class="subTotal form-control-plaintext" name="sub_total" value=" '+harga+' "></td>';
+					data += '<td><input type="text" value="ket" class="form-control  " autofocus name="keterangan[]" ></td>';
 					data += '<td><button type="button" class="hapusBarang btn btn-outline-danger"><i class="mdi  mdi-delete"></i></button></td>';
 					data += '</tr>'
 					if(tbody == 'Belum Ada Paket') $('#tbl-transaksi tbody tr').remove();

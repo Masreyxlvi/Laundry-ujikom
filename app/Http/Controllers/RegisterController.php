@@ -83,8 +83,9 @@ class RegisterController extends Controller
      */
     public function edit(User $user)
     {
-        return view('dashboard.register.update', [
-            'User' => User::all(),
+        return view('dashboard.profil.edit', [
+            'title' => 'User',
+            'user' => $user,
             'outlets' => outlet::all()
         ]);
     }
@@ -94,11 +95,27 @@ class RegisterController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, User $user)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+        ]);
+        
+        if($request->password != ' '){
+            $validate['password'] = Hash::make($request->password);
+        }
+
+        // dd($validate);
+        User::where('id' , $user->id)
+                    ->update($validate);
+        
+        return redirect()->back()->with('succes', 'Data Has Been Updated');
+
     }
 
     /**
