@@ -94,16 +94,16 @@ class RegisterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, User $user)
+    public function update(Request $request, User $user)
     {
         $validate = $request->validate([
             'name' => 'required',
             'username' => 'required',
             'email' => 'required',
+            
         ]);
         
         if($request->password != ' '){
@@ -111,8 +111,8 @@ class RegisterController extends Controller
         }
 
         // dd($validate);
-        User::where('id' , $user->id)
-                    ->update($validate);
+        User::where('id', $user->id)
+                        ->update($validate);
         
         return redirect()->back()->with('succes', 'Data Has Been Updated');
 

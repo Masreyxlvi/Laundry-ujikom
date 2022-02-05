@@ -37,7 +37,7 @@ Route::post('/laporan/dipenuhi' , [TransaksiController::class,  'updateDipenuhi'
 
 Route::get('/laporan', [LaporanController::class, 'laporan'])->middleware('auth');    
 
-Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show')->middleware('auth');
+Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show')->middleware('can:admin');
 Route::resource('/paket', PaketController::class)->except('create', 'edit', 'show')->middleware('auth');
 Route::resource('/member', MemberController::class)->except('create', 'edit', 'show')->middleware('auth');
 Route::resource('/register', RegisterController::class)->middleware('auth');

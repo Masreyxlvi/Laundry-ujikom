@@ -9,32 +9,44 @@
 						href="/dashboard" aria-expanded="false"><i class="mdi me-2 mdi-gauge"></i><span
 							class="hide-menu">Dashboard</span></a>
 				</li>
-				@can('management-outlet')
+				@can('admin')
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 						href="/outlet" aria-expanded="false">
 						<i class="mdi me-2 mdi-home-modern"></i><span class="hide-menu">Outlet</span></a>
 				</li>
-				
-
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 						href="/paket" aria-expanded="false"><i class="mdi me-2 mdi-book-open-page-variant"></i><span
 							class="hide-menu">Paket</span></a>
 				</li>
 				@endcan
+				@can('kasir')	
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-						href="/member" aria-expanded="false"><i
-							class="mdi me-2 mdi-account-box"></i><span class="hide-menu">Member</span></a>
+					href="/member" aria-expanded="false"><i
+					class="mdi me-2 mdi-account-box"></i><span class="hide-menu">Member</span></a>
 				</li>
-				@can('management-outlet')
+				@elsecan('admin')
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					href="/member" aria-expanded="false"><i
+					class="mdi me-2 mdi-account-box"></i><span class="hide-menu">Member</span></a>
+				</li>
+				@endcan
+				@can('admin')
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('register*') ? 'active' : ' ' }}"
 						href="/register" aria-expanded="false"><i
 							class="mdi me-2 mdi-account"></i><span class="hide-menu">User</span></a>
 				</li>
 				@endcan
+				@can('kasir')	
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-						href="/transaksi" aria-expanded="false"><i
-							class="mdi me-2 mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
+					href="/transaksi" aria-expanded="false"><i
+					class="mdi me-2 mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
+				</li>	
+				@elsecan('admin')
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					href="/transaksi" aria-expanded="false"><i
+					class="mdi me-2 mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
 				</li>
+				@endcan
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 						href="/laporan" aria-expanded="false"><i
 							class="mdi me-2 mdi-book"></i><span class="hide-menu">Laporan</span></a>

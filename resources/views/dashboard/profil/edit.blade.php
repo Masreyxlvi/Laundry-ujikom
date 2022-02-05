@@ -40,7 +40,7 @@
 				<div class="form-group">
 					<label class="col-md-12 mb-0">Username</label>
 					<div class="col-md-12">
-						<input type="text" name="username" value="{{ old('username',Auth::user()->username ) }}"
+						<input type="text" name="username" value="{{ Auth::user()->username  }}"
 							class="form-control ps-0 form-control-line">
 					</div>
 				</div>

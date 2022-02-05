@@ -64,8 +64,8 @@
 				<!-- ============================================================== -->
 				
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="/register/{{ Auth::id() }}/edit" id="navbarDropdown" >
-						<img src="{{ asset('vendors') }}/assets/images/users/1.jpg" alt="user" class="profile-pic me-2">Masrey
+					<a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="/register/{{ Auth::user()->id }}/edit" id="navbarDropdown" >
+						<img src="{{ asset('vendors') }}/assets/images/users/1.jpg" alt="user" class="profile-pic me-2">{{ strtoupper(Auth::user()->role) }}
 					</a>
 				</li>
 			</ul>
