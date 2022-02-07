@@ -27,11 +27,17 @@
 			<div class="card-body">
 						@include('dashboard.transaksi.pilih')
 				{{-- pembayaran --}}
-				<div class="card">
-					<div class="card-body">
-						@include('dashboard.transaksi.pembayaran')
+				
+				<button class="btn btn-outline-info mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					Bayar Langsung
+				</button>
+				@include('dashboard.transaksi.pembayaran')
+				<div class="">
+					<div class="d-grid gap-2">
+						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
+			
 	</div>
 </form>
 

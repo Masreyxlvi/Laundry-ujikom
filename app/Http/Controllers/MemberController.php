@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MemberController extends Controller
 {
@@ -16,6 +17,7 @@ class MemberController extends Controller
      */
     public function index()
     {
+        // Gate::authorize('admin','kasir');
         return view('dashboard.member.index',[
             'members' => Member::all(),
             'title' => 'Member'

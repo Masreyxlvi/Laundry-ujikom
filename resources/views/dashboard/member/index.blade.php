@@ -17,7 +17,7 @@
 				Tambah Data
 			</button>
 			<div class="table-responsive">
-				<table class="table user-table">
+				<table class="table user-table" id="order-listing">
 					<thead>
 						<tr>
 							<th class="border-top-0">#</th>
@@ -50,7 +50,7 @@
 								<form action="/member/{{ $member->id }}" method="POST" class="d-inline">
 									@csrf
 									@method('DELETE')
-									<button type="submit" class="btn btn-danger border-0" onclick="return confirm('Yakin Ingin Dihapus')"><i class="mdi me-2 mdi-delete">Delete</i></button>
+									<button type="submit" class="btn btn-danger border-0 delete" ><i class="mdi me-2 mdi-delete">Delete</i></button>
 								</form>
 							</td>
 						</tr>

@@ -182,6 +182,23 @@
 	});
 	})(jQuery);
 </script>	
+<script>
+	$('.delete').click(function(e){
+		e.preventDefault()
+		let data = $(this).closest('form').find('buttom').text()
+		swal({
+			title: "Apakah Kamu Yakin?", 
+			text: "Yakin Anda Ingin delete?",
+			icon: "warning",
+			buttons:true,
+			dangerMode: true,
+		})
+		.then((req) => {
+			if(req) $(e.target).closest('form').submit()
+			else swal.close()
+		})
+	})
+</script>
       @stack('script')
 </body>
 

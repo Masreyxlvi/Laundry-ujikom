@@ -70,16 +70,6 @@
 					  </tbody>
 					</table>
 				</div>
-				<div class="row mt-5 ">
-					<div class="col-lg-8 p-1">
-						<div class="card">
-							<div class="card-body bg-info" >
-								<input type="text"  id="total-harga" name="total" style="color: white" class="form-control-plaintext  form-control-lg text-center" value="Rp. 0" readonly>
-								{{-- <h4 class="text-center display-4" style="color: white" id="total-harga" name="total" >Rp . 0</h4> --}}
-							</div>
-						</div>
-					</div>		
-				</div>
 			</div>
 		</div>
 	</div>				
