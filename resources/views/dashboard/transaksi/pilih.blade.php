@@ -70,6 +70,15 @@
 					  </tbody>
 					</table>
 				</div>
+					{{-- pembayaran --}}
+					<button class="btn btn-outline-info mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						Bayar Langsung
+					</button>
+					@include('dashboard.transaksi.pembayaran')
+					
+						<div class="d-grid gap-2">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
 			</div>
 		</div>
 	</div>				

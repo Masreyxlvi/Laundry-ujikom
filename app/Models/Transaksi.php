@@ -20,15 +20,34 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Outlet::class);
     }
+
+    // public function detail()
+    // {
+    //     return $this->hasMany(Detail_Transaksi::class);
+    // }
     
     public function user()
     {
         return $this->belongsTo(User::class);
     }
     
-  
+    
     public function DetailTransaksi()
     {
-        return $this->hasMany(Detail_Transaksi::class , 'transaksi_id');
+        return $this->hasMany(Detail_Transaksi::class);
+    }
+    
+    public static function get_code()
+    {
+        $no_urut = self::selectRaw("IFNULL(MAX(SUBSTRING(`kode_invoice`,8,5)),0) + 1 AS no_urut")->orderBy('no_urut')->first()->no_urut;
+        $kode_invoice = "GL" . date("Ym") . sprintf("%'.02d", $no_urut);
+        return $kode_invoice;
+    }
+
+    public function getSubTotal()
+    {
+        $total = $this->DetailTransaksi->reduce( function($carry, $item) {
+            return $carry + $item->paket->harga; 
+        });
     }
 }

@@ -59,6 +59,20 @@
 							class="form-control ps-0 form-control-line">
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-md-12 mb-0">role</label>
+					<div class="col-md-12">
+						<input type="role" name="role" value="{{ Auth::user()->role }}"
+							class="form-control ps-0 form-control-line" readonly>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-12 mb-0">outlet</label>
+					<div class="col-md-12">
+						<input type="outlet" name="outlet" value="{{ Auth::user()->outlet->nama }}"
+							class="form-control ps-0 form-control-line" readonly>
+					</div>
+				</div>
 				{{-- <div class="form-group">
 					<label class="col-sm-12">Select Outlet</label>
 					<div class="col-sm-12 border-bottom">

@@ -56,13 +56,17 @@
 							</td>
 							<td>{{ $transaksi->status }}</td>
 							<td>
-								<div class="form-check form-switch">
-								<input class="form-check-input dibayar" type="checkbox" id="flexSwitchCheckDefault"  {{ $cek = ($transaksi->dibayar == 'dibayar'? "checked" : " ") }}>
-								<label class="form-check-label" for="flexSwitchCheckDefault"></label>
-							  </div>
+								@if ($transaksi->dibayar == 'dibayar')
+								<span class="badge bg-primary px-2 py-1"
+                                ><i class="mdi mdi-cart-outline"></i></span>
+								@else
+								<span class="badge bg-danger px-2 py-1"
+                                ><i class="mdi mdi-cart-off"></i></span>
+									
+								@endif
 							</td>
 							<td>	
-							<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#Transaksi{{ $key }}">
+							<button type="button" class="btn btn-outline-primary  px-2 py-1" data-bs-toggle="modal" data-bs-target="#Transaksi{{ $key }}">
 								<i class="mdi mdi-eye"></i>
 							  </button>
 						</td>

@@ -149,6 +149,15 @@
     <script src="{{ asset('vendors') }}/js/custom.js"></script>
 
     <script>
+        	Date.prototype.toDateInputValue = (function() {
+						var local = new Date(this);
+						local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+						return local.toJSON().slice(0,10);
+					}); 
+				$('#tgl').val(new Date().toDateInputValue());
+	
+    </script>
+    <script>
         $(function(){
           $('#succes-alert').fadeTo(2000, 500).slideUp(500, function(){
             $('#succes->alert').slideUp(500)
@@ -188,7 +197,7 @@
 		let data = $(this).closest('form').find('buttom').text()
 		swal({
 			title: "Apakah Kamu Yakin?", 
-			text: "Yakin Anda Ingin delete?",
+			text: "Data ini Ingin Dihapus?",
 			icon: "warning",
 			buttons:true,
 			dangerMode: true,

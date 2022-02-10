@@ -99,18 +99,21 @@ class RegisterController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $validate = $request->validate([
+        $rules = [
             'name' => 'required',
             'username' => 'required',
             'email' => 'required',
-            
-        ]);
+            'role' => 'required',
+            // 'outlet_id' => 'required',
+        ];
         
         if($request->password != ' '){
-            $validate['password'] = Hash::make($request->password);
+            $rules['password'] = Hash::make($request->password);
         }
 
-        // dd($validate);
+
+        $validate = $request->validate($rules);
+        dd($validate);
         User::where('id', $user->id)
                         ->update($validate);
         

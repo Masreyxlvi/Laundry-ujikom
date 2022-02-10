@@ -14,6 +14,7 @@
 					<tr>
 					<th>Kode Invoice</th>
 					<th>Nama Paket</th>
+					<th>Jenis Paket</th>
 					<th>Qty</th>
 					<th>Keterangan</th>
 					</tr>
@@ -23,8 +24,21 @@
 					<tr>
 						<td>{{ $p->transaksi->kode_invoice }}</td>
 						<td>{{ $p->paket->nama_paket }}</td>
+						<td>
+							@if ($p->paket->jenis == 'bed_cover')
+							Bed Cover
+							@else
+							{{ $p->paket->jenis }}
+						@endif	
+						</td>
 						<td>{{ $p->qty }}</td>
-						<td>{{ $p->keterangan }}</td>
+						<td>
+							@if ($p->keterangan == '')
+							<i>Tidak Ada Keterangan</i>
+							@else
+							{{ $p->keterangan }}
+						@endif	
+						</td>
 					</tr>
 					@endforeach
 				</tbody>

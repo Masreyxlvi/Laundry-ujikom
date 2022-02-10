@@ -11,4 +11,6 @@ class Member extends Model
 
     
     protected $guarded = ['id'];
+    
+
 }

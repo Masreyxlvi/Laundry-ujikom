@@ -35,10 +35,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::post('/laporan/dipenuhi' , [TransaksiController::class,  'updateDipenuhi'])->name('dipenuhi');
 
-Route::get('/laporan', [LaporanController::class, 'laporan'])->middleware('auth');    
+Route::get('/laporan', [LaporanController::class, 'laporan'])->middleware('role:admin,kasir');    
 
 Route::resource('/outlet', OutletController::class)->except('create', 'edit', 'show')->middleware('can:admin');
 Route::resource('/paket', PaketController::class)->except('create', 'edit', 'show')->middleware('can:admin');
-Route::resource('/member', MemberController::class)->except('create', 'edit', 'show')->middleware('auth');
-Route::resource('/register', RegisterController::class)->middleware('auth');
-Route::resource('/transaksi', TransaksiController::class)->middleware('auth');
+Route::resource('/member', MemberController::class)->except('create', 'edit', 'show')->middleware('role:admin,kasir');
+Route::resource('/register', RegisterController::class)->middleware('role:admin');  
+Route::resource('/transaksi', TransaksiController::class)->middleware('role:admin,kasir');
+
+Route::get('/transaksi/faktur/{faktur}', [TransaksiController::class, 'faktur']);    

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Outlet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PaketFactory extends Factory
@@ -14,7 +15,10 @@ class PaketFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'outlet_id' => $this->faker->randomElement(Outlet::select('id')->get()),
+            'jenis' => $this->faker->randomElement(['kiloan', 'selimut', 'bed_cover', 'kaos']),
+            'nama_paket' => $this->faker->word(),
+            'harga' => $this->faker->randomFloat(),
         ];
     }
 }

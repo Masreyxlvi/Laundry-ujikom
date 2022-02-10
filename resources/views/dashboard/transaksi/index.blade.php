@@ -25,19 +25,11 @@
 			@endif
 		<div class="card">
 			<div class="card-body">
-						@include('dashboard.transaksi.pilih')
-				{{-- pembayaran --}}
-				
-				<button class="btn btn-outline-info mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-					Bayar Langsung
-				</button>
-				@include('dashboard.transaksi.pembayaran')
-				<div class="">
-					<div class="d-grid gap-2">
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</div>
-				</div>
+				@include('dashboard.transaksi.pilih')
 			
+				</div>
+			</div>
+		</div>
 	</div>
 </form>
 
@@ -149,12 +141,6 @@
 			})
 		})
 		
-			Date.prototype.toDateInputValue = (function() {
-						var local = new Date(this);
-						local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-						return local.toJSON().slice(0,10);
-					}); 
-				$('#tgl').val(new Date().toDateInputValue());
 		})
 	</script>
 @endpush

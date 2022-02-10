@@ -49,10 +49,10 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        $d = Transaksi::orderBy('id', 'desc')->first();
-        $urutan = ($d == null?1:substr($d->kode_invoice,5,6)+1);
+        // $d = Transaksi::orderBy('id', 'desc')->first();
+        // $urutan = ($d == null?1:substr($d->kode_invoice,5,6)+1);
 
-        $kode_invoice = sprintf('GL' .date('Y') .'%06d' ,$urutan); 
+        // $kode_invoice = sprintf('GL' .date('Y') .'%05d' ,$urutan); 
 
         // dd($kode_invoice);
         $validate = $request->validate([
@@ -71,14 +71,16 @@ class TransaksiController extends Controller
             'qty' => 'required',
         ]);
         $validate['user_id'] = Auth::id();
-        $validate['kode_invoice'] = $kode_invoice;
+        $validate['kode_invoice'] = Transaksi::get_code($validate);
 
         // dd($validate);
         $input_transkasi =  Transaksi::create($validate);
 
         $paket_id = $request->paket_id;
         $qty = $request->qty;
+        $harga = $request->harga;
         $keterangan = $request->keterangan;
+        // $sub_total = $harga*$qty;
         // $sub_total = $request->sub_total;
 
         foreach($paket_id as $i => $v){
@@ -86,15 +88,12 @@ class TransaksiController extends Controller
            $validate['paket_id'] = $paket_id[$i];
            $validate['qty'] = $qty[$i];
            $validate['keterangan'] = $keterangan[$i];
-        //    $$validate['sub_total'] = $sub_total[$i];
+        //    $sub_total = $sub_total[$i];
             
            $input_detail_pembelian =  Detail_Transaksi::create($validate);
         //    dd($validate);
          }
-        return redirect('/transaksi')->with('succes','Data Hass Been Created' );
-
-
-
+        return redirect('/transaksi/faktur/'.$input_transkasi->id);
 
     }
 
@@ -142,15 +141,24 @@ class TransaksiController extends Controller
     {
         //
     }
-
-    public function updateDipenuhi(Request $request){
-        $data = Transaksi::where('kode_invoice', $request->kode_invoice)->first();
-        $data->dibayar = $request->dibayar;
-        $update = $data->save;
-
-        if($update)
-        return 'data terpenuhi';
-        return 'Transaksi Sudah Dibayar';
+   
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function faktur(Request $request,Transaksi $transaksi, $id)
+    {
+        // $transaksi->load(['member','DetailTransaksi']); 
+        // $data['transaksi'] = $transaksi; 
+        // dd($transaksi);
+        $data = array(
+            'transaksi' => Transaksi::find($id),
+            'title' => 'Faktur'
+        );
+        $transaksi->load(['member','DetailTransaksi']);
+        return view('dashboard.transaksi.faktur')->with($data);
     }
 }
 
