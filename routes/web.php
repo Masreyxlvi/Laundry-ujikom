@@ -8,8 +8,11 @@ use App\Http\Controllers\OutletController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
+use App\Models\Member;
+use App\Models\Paket;
 use App\Models\Transaksi;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +26,10 @@ use App\Models\User;
 */
 
 Route::get('/dashboard', function () {
-    return view('dashboard.index', [
+    $total = Transaksi::get()->sum('total');
+    $member = Member::get()->count('id');
+    return view('dashboard.index' , compact('total',$total,'member', $member), [
         'title' => 'Dashboard',
-        'users' => User::where('id', auth()->user()->id)->get()
     ]);
 });
 
@@ -43,4 +47,6 @@ Route::resource('/member', MemberController::class)->except('create', 'edit', 's
 Route::resource('/register', RegisterController::class)->middleware('role:admin');  
 Route::resource('/transaksi', TransaksiController::class)->middleware('role:admin,kasir');
 
-Route::get('/transaksi/faktur/{faktur}', [TransaksiController::class, 'faktur']);    
+Route::get('/transaksi/faktur/{faktur}', [TransaksiController::class, 'faktur']);
+
+Route::get('/transaksi/cetak_pdf/{cetak_pdf}', [TransaksiController::class, 'exportPDF']);    

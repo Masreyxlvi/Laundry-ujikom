@@ -18,6 +18,7 @@ class CreateDetailTransaksisTable extends Migration
             $table->foreignId('transaksi_id');
             $table->foreignId('paket_id');
             $table->double('qty');
+            $table->double('sub_total');
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

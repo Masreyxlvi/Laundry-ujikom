@@ -26,6 +26,7 @@ class CreateTransaksisTable extends Migration
             $table->double('biaya_tambahan');
             $table->double('diskon');
             $table->double('pajak');
+            $table->double('total');
             $table->enum('status', ['baru', 'proses','selesai', 'diambil']);
             $table->enum('dibayar', ['dibayar','belum_dibayar']);
             $table->timestamps();

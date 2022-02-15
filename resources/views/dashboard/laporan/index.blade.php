@@ -15,9 +15,6 @@
 							<th class="border-top-0">Tgl Transaksi</th>
 							<th class="border-top-0">Tgl bayar</th>
 							<th class="border-top-0">Batas Waktu</th>
-							<th class="border-top-0">Biaya Tambahan</th>
-							<th class="border-top-0">Diskon</th>
-							<th class="border-top-0">Pajak</th>
 							<th class="border-top-0">Status</th>
 							<th class="border-top-0">Dibayar</th>
 							<th class="border-top-0">Action</th>
@@ -30,30 +27,9 @@
 							<td>{{ $transaksi->member->nama }}</td>
 							{{-- <td>{{ $transaksi->user->name }}</td>
 							<td>{{ $transaksi->user->outlet->nama }}</td> --}}
-							<td>{{date('d-M-Y', strtotime($transaksi->tgl) ) }}</td>
-							<td>{{date('d-M-Y', strtotime($transaksi->tgl_bayar) ) }}</td>
-							<td>{{date('d-M-Y', strtotime($transaksi->batas_waktu) ) }}</td>
-							<td>	
-								@if ($transaksi->biaya_tambahan == '0')
-								-
-								@else
-								{{ $transaksi->biaya_tambahan }}
-							@endif 
-							</td>
-							<td>
-								@if ($transaksi->diskon == '0')
-									-
-									@else
-									{{ $transaksi->diskon }}
-								@endif	
-							</td>
-							<td>
-								@if ($transaksi->pajak == '0')
-									-
-									@else
-									{{ $transaksi->pajak }}
-								@endif	
-							</td>
+							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->tgl) ) }}</td>
+							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->tgl_bayar) ) }}</td>
+							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->batas_waktu) ) }}</td>
 							<td>{{ $transaksi->status }}</td>
 							<td>
 								@if ($transaksi->dibayar == 'dibayar')

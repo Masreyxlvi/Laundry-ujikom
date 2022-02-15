@@ -27,10 +27,12 @@
 					</div>
 			</div>
 			<div class="col-lg-7">
-				<label for="tgl" class="col-form-label"><b>Batas Waktu</b>  </label>
-					<input type="date" name="batas_waktu" class="form-control @error('batas_waktu') is-invalid @enderror"  id="tgl"  value="{{ old('batas_waktu') }}">
 				<label for="tgl" class="col-form-label"><b>Tanggal Bayar</b>  </label>
 					<input type="date" name="tgl_bayar" class="form-control @error('tgl_bayar') is-invalid @enderror"  id="tgl_masuk"  value="{{ old('tgl_bayar') }}">
+				<label for="tgl" class="col-form-label"><b>Outlet</b>  </label>
+				<select class="form-control js-example-basic-single w-100" id="outlet_id" name="outlet_id">
+					<option value="{{ Auth::user()->outlet->id }}">{{ strtoupper(Auth::user()->outlet->nama) }}</option>
+				</select>
 				<label for="status" class="col-form-label"><b> Status </b></label>
 					<select class="form-control js-example-basic-single w-100" id="status" name="status">
 						{{-- <option value="" disabled selected>-- Pilih --</option> --}}
@@ -43,7 +45,7 @@
 						<div class="card">
 							<div class="card-body bg-primary" >
 								{{-- <h4 class="text-center" >Keterangan  </h4> --}}
-								<input type="text"  id="total-harga" name="total" style="color: white" class="form-control-plaintext  form-control-lg text-center" value="Rp. 0" readonly>
+								<input type="text"  id="totalHarga" name="total" style="color: white" class="form-control-plaintext  form-control-lg text-center" value="Rp. 0" readonly>
 							</div>
 						</div>
 					</div>

@@ -1,11 +1,18 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-
 <form action="/transaksi" method="post" id="formTransaksi">
 	@csrf
 	<div class="col-lg-12">
 		<h4 class="card-title">Transaksi</h4>
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+			  <a class="nav-link active" data-bs-toggle="collapse" id="cucianBaru" href="#CucianBaru" role="button" aria-expanded="false" aria-controls="collapseExample">Cucian Baru</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" data-bs-toggle="collapse" href="#Proses" role="button" id="proses" aria-expanded="false" aria-controls="collapseExample" href="#">&nbsp;&nbsp; Link</a>
+			</li>
+		</ul>
 		@if($errors->any())
 		<div class="alert alert-danger" role="alert" id="error-alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="close">
@@ -23,13 +30,15 @@
 				{{session('succes')  }}
 			</div>
 			@endif
-		<div class="card">
-			<div class="card-body">
-				@include('dashboard.transaksi.pilih')
-			
+			<div class="collapse" id="CucianBaru">
+				<div class="card">
+					<div class="card-body">
+						@include('dashboard.transaksi.pilih')
+					
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 </form>
 
@@ -39,6 +48,16 @@
   @endsection
 @push('script')
 	<script>
+		$('#CucianBaru').collapse('show')
+
+			$('#CucianBaru').on('show.bs.collapse', function(){
+				$('#Proses').collapse('hide');
+				$('#cucianBaru').removeClass('active');
+				$('#proses').addClass('active');
+				
+			})
+
+		// memilih data member
 			$(function(){
 			$('#tbl-member').DataTable();
 			$('#tbl-paket').DataTable();
@@ -58,7 +77,10 @@
 				$('#alamat').val(alamat)
 				$('#member').modal('hide')
 			});
-
+			
+		})
+		// end milih data member
+		// memilih data Paket
 				let totalHarga = 0;
 				function TambahPaket(a){
 					let d = $(a).closest('tr');
@@ -74,10 +96,10 @@
 					data += '<td>' +harga+ '</td>';
 					data += '<input type="hidden" name="paket_id[]" value=" '+idPaket+' ">';
 					data += '<input type="hidden" name="harga" value=" '+harga+' ">';
-					// data += '<input type="hidden" name="sub_total[]" value=" '+hargaBarang*parseInt($('#qty_barang').val())+' ">';
+					data += '<input type="hidden" value=" '+harga*parseInt($('#qty').val())+' ">';
 					data += '<td><input type="number" value="1" min="1" class="form-control-sm border-0 qty" autofocus name="qty[]" ></td>';
 					// data += '<td><input type="text" value="0"  class="diskon" name="diskon[]" ></td>';
-					data += '<td><input type="text" readonly class="subTotal form-control-plaintext" name="sub_total" value=" '+harga+' "></td>';
+					data += '<td><input type="text" readonly class="subTotal form-control-plaintext" name="sub_total[]" value=" '+harga+' "></td>';
 					data += '<td><input type="text" placeholder="Keterangan" class="form-control  " autofocus name="keterangan[]" ></td>';
 					data += '<td><button type="button" class="hapusBarang btn btn-outline-danger"><i class="mdi  mdi-delete"></i></button></td>';
 					data += '</tr>'
@@ -85,7 +107,7 @@
 
 					$('#tbl-transaksi tbody').append(data);
 					totalHarga += parseFloat(harga);
-					$('#total-harga').val(totalHarga);
+					$('#totalHarga').val(totalHarga);
 					$('#paket').modal('hide')
 				}
 
@@ -95,23 +117,10 @@
 				let harga = parseFloat($(a).closest('tr').find('td:eq(2)').text());
 				let subTotalAwal = parseFloat($(a).closest('tr').find('.subTotal').val());
 				let subTotal = qty * harga;
-				// let subTotal2 =harga-diskon/100 * harga;
 				totalHarga += subTotal - subTotalAwal;
 				$(a).closest('tr').find('.subTotal').val(subTotal);
-				$('#total-harga').val(totalHarga);
+				$('#totalHarga').val(totalHarga);
 			}
-
-			// function calcDiskon(a){
-			// 	let diskon = parseInt($(a).closest('tr').find('.diskon').val());
-			// 	let harga = parseFloat($(a).closest('tr').find('td:eq(2)').text());
-			// 	let subTotalAwal = parseFloat($(a).closest('tr').find('.subTotal').val());
-			// 	let subTotal =harga-diskon/100 * harga;
-			// 	totalHarga = subTotal - subTotalAwal;
-			// 	$(a).closest('tr').find('.subTotal').val(subTotal);
-			// 	$('#total-harga').val(totalHarga);
-			// }
-
-			
 
 			// event
 			$(function(){
@@ -120,27 +129,23 @@
 				// pemilihan paket
 				$('#paket').on('click', '.pilih-paket', function(){
 					TambahPaket(this);
-				
+				});
 				// change qty event
 				$('#formTransaksi').on('change', '.qty', function(){
 					calcSubTotal(this);
-				})
-
-				// $('#formTransaksi').on('change', '.diskon', function(){
-				// 	calcDiskon(this);
-				// })
-
+				});
 				// remove barang
 				$('#formTransaksi').on('click', '.hapusBarang', function(){
 					let subTotalAwal = parseFloat($(this).closest('tr').find('.subTotal').val());
 					totalHarga -= subTotalAwal;
-
+					// alert(totalHarga)
 					$currentRow = $(this).closest('tr').remove();
-					$('#total-harga') .val(totalHarga);
-				})
-			})
-		})
+					$('#totalHarga') .val(totalHarga);
+				});
+			});
 		
-		})
+		// end milih paket
+		
+	
 	</script>
 @endpush

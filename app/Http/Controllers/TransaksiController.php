@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use App\Http\Requests\StoreTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Detail_Transaksi;
 use App\Models\Member;
 use App\Models\outlet;
 use App\Models\Paket;
 use App\Models\User;
 use Illuminate\Http\Request;
+// use PDF;
 use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
@@ -20,14 +22,23 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $transaksi = null;
+
+        if($request->has('status')) {
+            $transaksi = Transaksi::where('status', $request->status)->get();
+        }else{
+            $transaksi = Transaksi::get();
+        }
         return view('dashboard.transaksi.index',[
             'title' =>'Transaksi',
             'pakets' => Paket::all(),
             'members' => Member::all(),
             'outlets' => outlet::all(),
-            'users' => User::where('id' , auth()->user()->id)->get()
+            // 'users' => User::where('id' , auth()->user()->id)->get()
+            'transaksis' => $transaksi
+
         ]);
     }
 
@@ -69,6 +80,8 @@ class TransaksiController extends Controller
             'dibayar' => 'required',
             'keterangan' => 'nullable',
             'qty' => 'required',
+            'total' => 'required',
+            'sub_total' => 'required',
         ]);
         $validate['user_id'] = Auth::id();
         $validate['kode_invoice'] = Transaksi::get_code($validate);
@@ -78,7 +91,7 @@ class TransaksiController extends Controller
 
         $paket_id = $request->paket_id;
         $qty = $request->qty;
-        $harga = $request->harga;
+        $sub_total = $request->sub_total;
         $keterangan = $request->keterangan;
         // $sub_total = $harga*$qty;
         // $sub_total = $request->sub_total;
@@ -87,6 +100,7 @@ class TransaksiController extends Controller
            $validate['transaksi_id'] = $input_transkasi->id;
            $validate['paket_id'] = $paket_id[$i];
            $validate['qty'] = $qty[$i];
+           $validate['sub_total'] = $sub_total[$i];
            $validate['keterangan'] = $keterangan[$i];
         //    $sub_total = $sub_total[$i];
             
@@ -145,14 +159,12 @@ class TransaksiController extends Controller
      /**
      * Show the form for editing the specified resource.
      *
+     * @param  \App\Models\Transaksi  $transaksi
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function faktur(Request $request,Transaksi $transaksi, $id)
     {
-        // $transaksi->load(['member','DetailTransaksi']); 
-        // $data['transaksi'] = $transaksi; 
-        // dd($transaksi);
         $data = array(
             'transaksi' => Transaksi::find($id),
             'title' => 'Faktur'
@@ -160,5 +172,16 @@ class TransaksiController extends Controller
         $transaksi->load(['member','DetailTransaksi']);
         return view('dashboard.transaksi.faktur')->with($data);
     }
+
+    // public function exportPDF(Request $request, Transaksi $transaksi, $id) {
+       
+    //     $data = array(
+    //         'transaksi' => Transaksi::find($id),
+    //         'title' => 'Faktur'
+    //     );
+    //     $transaksi->load(['member','DetailTransaksi']);
+    //     return PDF::loadView('dashboard.transaksi.cetakPDF')->with($data)->stream();
+        
+    //   }
 }
 

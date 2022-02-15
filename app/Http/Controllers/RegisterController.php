@@ -81,13 +81,13 @@ class RegisterController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user , $id)
     {
-        return view('dashboard.profil.edit', [
-            'title' => 'User',
-            'user' => $user,
-            'outlets' => outlet::all()
-        ]);
+        $data = array(
+            'title' => 'Profil',
+            'user' => User::find($id)
+        );
+        return view('dashboard.profil.edit')->with($data);
     }
 
     /**
@@ -97,27 +97,28 @@ class RegisterController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user, $id)
     {
-        $rules = [
+        // dd($user);
+        $validate = $request->validate([
             'name' => 'required',
             'username' => 'required',
             'email' => 'required',
             'role' => 'required',
             // 'outlet_id' => 'required',
-        ];
+            ]);
         
         if($request->password != ' '){
-            $rules['password'] = Hash::make($request->password);
+            $validate['password'] = Hash::make($request->password);
         }
 
 
-        $validate = $request->validate($rules);
-        dd($validate);
+        // $validate = $request->validate($rules);
+        // dd($validate);
         User::where('id', $user->id)
                         ->update($validate);
         
-        return redirect()->back()->with('succes', 'Data Has Been Updated');
+        return redirect('/register')->with('succes', 'Data Has Been Updated');
 
     }
 

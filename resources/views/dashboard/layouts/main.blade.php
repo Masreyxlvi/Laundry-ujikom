@@ -15,6 +15,8 @@
     <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('vendors') }}/assets/images/favicon.png">
+    {{-- Icon Boostrap --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- chartist CSS -->
     <link href="{{ asset('vendors') }}/assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendors') }}/assets/plugins/dataTables.net-bs4/dataTables.bootstrap4.css">

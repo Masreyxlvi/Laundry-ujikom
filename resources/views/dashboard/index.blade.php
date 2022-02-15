@@ -1,6 +1,127 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
+<div class="col-lg-3 col-md-6">
+	<div class="card">
+	  <div class="card-body">
+		 
+		<div class="d-flex flex-row">
+		  <div
+			class="
+			  round round-lg
+			  text-white
+			  d-flex
+			  align-items-center
+			  justify-content-center
+			  rounded-circle
+			  bg-info
+			"
+		  >
+			<i
+			  data-feather="credit-card"
+			  class="bi bi-cart-check"
+			></i>
+		  </div>
+		  <div class="ms-2 align-self-center">
+			<h3 class="mb-0">Rp . {{  number_format($total) }}</h3>
+			<h6 class="text-muted mb-0">Total Revenue</h6>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- Column -->
+  <!-- Column -->
+  <div class="col-lg-3 col-md-6">
+	<div class="card">
+	  <div class="card-body">
+		<div class="d-flex flex-row">
+		  <div
+			class="
+			  round round-lg
+			  text-white
+			  d-flex
+			  align-items-center
+			  justify-content-center
+			  rounded-circle
+			  bg-warning
+			"
+		  >
+			<i
+			  data-feather="monitor"
+			  class="bi bi-people"
+			></i>
+		  </div>
+		  <div class="ms-2 align-self-center">
+			<h3 class="mb-0">{{ $member }}</h3>
+			<h6 class="text-muted mb-0">Total Member</h6>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- Column -->
+  <!-- Column -->
+  <div class="col-lg-3 col-md-6">
+	<div class="card">
+	  <div class="card-body">
+		<div class="d-flex flex-row">
+		  <div
+			class="
+			  round round-lg
+			  text-white
+			  d-flex
+			  align-items-center
+			  justify-content-center
+			  rounded-circle
+			  bg-primary
+			"
+		  >
+			<i
+			  data-feather="shopping-bag"
+			  class="fill-white feather-lg"
+			></i>
+		  </div>
+		  <div class="ms-2 align-self-center">
+			<h3 class="mb-0">$1795</h3>
+			<h6 class="text-muted mb-0">Offline Products</h6>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- Column -->
+  <!-- Column -->
+  <div class="col-lg-3 col-md-6">
+	<div class="card">
+	  <div class="card-body">
+		<div class="d-flex flex-row">
+		  <div
+			class="
+			  round round-lg
+			  text-white
+			  d-flex
+			  justify-content-center
+			  align-items-center
+			  rounded-circle
+			  bg-danger
+			"
+		  >
+			<i
+			  data-feather="shield"
+			  class="bi bi-book-half"
+			></i>
+		  </div>
+		  <div class="ms-2 align-self-center">
+			<h3 class="mb-0">$687</h3>
+			<h6 class="text-muted mb-0">Ad. Expense</h6>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- Column -->
+
 <div class="col-lg-8">
 	<div class="card">
 		<div class="card-body">

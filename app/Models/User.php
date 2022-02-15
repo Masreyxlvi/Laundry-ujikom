@@ -44,4 +44,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Outlet::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
 }

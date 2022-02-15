@@ -3,16 +3,14 @@
 	<div class="col-lg-3">
 		<input type="date" name="tgl" class="form-control @error('tgl') is-invalid @enderror"  id="tgl"  value="{{ old('tgl') }}">
 	</div>
-	<label for="nama" class="col-lg-3 col-form-label"></label>
-	<div class="col-lg-4"> 
-		@foreach ($users as $user)
-		<select class="form-control js-example-basic-single w-100 text-center" id="outlet_id" name="outlet_id">
-			<option value="{{ $user->outlet->id }}">{{ strtoupper($user->outlet->nama) }}</option>
-
-		</select>
+	<label for="nama" class="col-lg-1 col-form-label"> </label>
+	<label for="nama" class="col-lg-2 col-form-label">Batas Waktu </label>
+	<div class="col-lg-3 text-end"> 
+		{{-- @foreach ($users as $user) --}}
+		<input type="date" name="batas_waktu" class="form-control @error('batas_waktu') is-invalid @enderror"  id=""  value="{{ date('Y-m-d' , strtotime(date('Y-m-d') . '+3 day')) }}">
 			{{-- <input type="text" name="outlet_id" class="form-control text-center @error('outlet_id') is-invalid @enderror"  id="tgl"  value="{{ strtoupper($user->outlet->nama) }}"> --}}
-		@endforeach
-	</div>
+		{{-- @endforeach --}}
+	</div>  
 </div>
 
 {{-- pilih Paket Dan Member --}}
@@ -84,3 +82,13 @@
 	</div>				
 </div>
 </div>
+@push('script')
+	<script>
+		Date.prototype.toDateInputValue = (function() {
+						var local = new Date(this);
+						local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+						return local.toJSON().slice(0,10);
+					}); 
+				$('#batas_waktu').val(new Date().toDateInputValue());	
+	</script>	
+@endpush

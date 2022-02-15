@@ -37,12 +37,12 @@
 				</li>
 				@endcan
 				@can('kasir')	
-				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
 					href="/transaksi" aria-expanded="false"><i
 					class="mdi me-2 mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
 				</li>	
 				@elsecan('admin')
-				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
 					href="/transaksi" aria-expanded="false"><i
 					class="mdi me-2 mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
 				</li>

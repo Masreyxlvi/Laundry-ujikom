@@ -9,16 +9,16 @@
 				<div class="">
 				  <address>
 					<h3>&nbsp;From,</h3>
-					<h4 class="mb-0 fw-bold">&nbsp;{{strtoupper(Auth::user()->name )}}</h4>
+					<h4 class="mb-0 fw-bold">&nbsp;{{ Auth::user()->outlet->nama}}</h4>
+					<span class="fw-bold ms-1">{{ $transaksi->kode_invoice }}</span>
 					<div class="mb-2">
-					  <span class="fw-bold ms-1">{{ $transaksi->kode_invoice }}</span
-					  ><span class="invoice-number ms-2"></span>
+					  <span class="invoice-number ms-2"></span>
 					  <h6 class="text-muted font-weight-medium">
 						&nbsp;{{ Auth::user()->email }}
 					  </h6>
 					</div>
 					<p class="text-muted ms-1">
-						{{ Auth::user()->outlet->nama}}
+						{{strtoupper(Auth::user()->name )}}
 					</p>
 				  </address>
 				</div>
@@ -73,7 +73,7 @@
 								</td>
 								<td class="text-end">{{ $p->qty }}</td>
 								<td class="text-end">Rp. {{ number_format( $p->paket->harga) }}</td>
-								<td class="text-end">Rp. {{ number_format( $p->paket->harga*$p->qty) }}</td>
+								<td class="text-end">Rp. {{ number_format( $p->sub_total) }}</td>
 								<td class="text-end">
 									@if ($p->keterangan == '')
 									<i>Tidak Ada Keterangan</i>
@@ -87,27 +87,40 @@
 					</table>
 				</div>
 			  </div>
+			  {{-- @php
+			  	$total = $p->paket->harga*$p->qty;
+				$total_semua[] = $p->paket->harga*$p->qty ;	  
+			  @endphp --}}
 			  <div class="col-md-12">
 				<div class="pull-right mt-4 text-end">
-				  <p>Sub - Total : Rp. {{ number_format( $transaksi->getSubTotal() ) }}</p>
+				  <p>Sub - Total : Rp. {{ number_format( $transaksi->total ) }}</p>
 				  <p>Biaya Tambahan : Rp. {{ number_format( $transaksi->biaya_tambahan) }}</p>
 				  <p>Pajak : Rp. {{ number_format( $transaksi->pajak) }}%</p>
 				  <p>Diskon : Rp. {{ number_format( $transaksi->diskon) }}%</p>
 				  <hr />
-				  <h3><b>Total :</b> $26,778</h3>
+				  @php
+
+					$diskon = $transaksi->diskon/100 * $transaksi->total;
+					$pajak = $transaksi->total * $transaksi->pajak/100 ;  
+				  @endphp
+				  <h3><b>Total :</b>{{ number_format($transaksi->total+$transaksi->biaya_tambahan +$pajak -$diskon ) }}</h3>
 				</div>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div>    
 				<hr />
 				<div class="text-end">
-				  <button class="btn btn-danger" type="submit">
-					Proceed to payment
-				  </button>
-				  <button
-					class="btn btn-default print-page"
-					type="button"
-				  >
-					<span><i class="fa fa-print"></i> Print</span>
-				  </button>
+						<button class="btn btn-danger mb-2"  type="submit">
+							Proceed to payment
+						</button>
+						<form action="/transaksi/cetak_pdf/{{ $transaksi->id }}" class="border-0">
+							@csrf
+						<button
+						class="btn btn-default print-page" target="_blank"
+						title="Cetak nota"
+						type="submit"
+						>
+						<span><i class="fa fa-print"></i> Print</span>
+					</button>
+				</form>
 				</div>
 			  </div>
 			</div>
