@@ -60,10 +60,10 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        // $d = Transaksi::orderBy('id', 'desc')->first();
-        // $urutan = ($d == null?1:substr($d->kode_invoice,5,6)+1);
+        $d = Transaksi::orderBy('id', 'desc')->first();
+        $urutan = ($d == null?1:substr($d->kode_invoice,5,6)+1);
 
-        // $kode_invoice = sprintf('GL' .date('Y') .'%05d' ,$urutan); 
+        $kode_invoice = sprintf('GL' .date('Y') .'%05d' ,$urutan); 
 
         // dd($kode_invoice);
         $validate = $request->validate([
@@ -77,14 +77,14 @@ class TransaksiController extends Controller
             'pajak' => 'nullable',
             'biaya_tambahan' => 'nullable',
             'status' => 'required',
-            'dibayar' => 'required',
+            'dibayar' => 'nullable',
             'keterangan' => 'nullable',
             'qty' => 'required',
             'total' => 'required',
             'sub_total' => 'required',
         ]);
         $validate['user_id'] = Auth::id();
-        $validate['kode_invoice'] = Transaksi::get_code($validate);
+        $validate['kode_invoice'] = $kode_invoice;
 
         // dd($validate);
         $input_transkasi =  Transaksi::create($validate);

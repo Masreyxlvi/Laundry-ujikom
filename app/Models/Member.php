@@ -12,5 +12,9 @@ class Member extends Model
     
     protected $guarded = ['id'];
     
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 
 }

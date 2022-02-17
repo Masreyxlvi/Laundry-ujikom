@@ -100,10 +100,11 @@
 				  <hr />
 				  @php
 
-					$diskon = $transaksi->diskon/100 * $transaksi->total;
-					$pajak = $transaksi->total * $transaksi->pajak/100 ;  
+					$jumlah = $transaksi->total + $transaksi->biaya_tambahan;
+					$diskon = $transaksi->diskon/100 * $jumlah;
+					$pajak =$transaksi->pajak/100 * $jumlah  ;  
 				  @endphp
-				  <h3><b>Total :</b>{{ number_format($transaksi->total+$transaksi->biaya_tambahan +$pajak -$diskon ) }}</h3>
+				  <h3><b>Total :</b>Rp. {{ number_format($jumlah +$pajak -$diskon ) }}</h3>
 				</div>
 				<div class="clearfix"></div>    
 				<hr />

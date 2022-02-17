@@ -21,6 +21,12 @@ class Transaksi extends Model
         return $this->belongsTo(Outlet::class);
     }
 
+    // public function scopeFilter($query, array $filters)
+    // {
+    //     $query->when($filters['search'] ?? false, function($query, $seacrh) {
+    //         return $query->where('tgl', 'like', '%' . $seacrh . '%');
+    //     });
+    // }
     // public function detail()
     // {
     //     return $this->hasMany(Detail_Transaksi::class);

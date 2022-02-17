@@ -23,12 +23,12 @@ class CreateTransaksisTable extends Migration
             $table->date('tgl');
             $table->date('batas_waktu');
             $table->date('tgl_bayar')->nullable();
-            $table->double('biaya_tambahan');
-            $table->double('diskon');
-            $table->double('pajak');
-            $table->double('total');
-            $table->enum('status', ['baru', 'proses','selesai', 'diambil']);
-            $table->enum('dibayar', ['dibayar','belum_dibayar']);
+            $table->double('biaya_tambahan')->nullable();
+            $table->double('diskon')->nullable();
+            $table->double('pajak')->nullable();
+            $table->double('total')->nullable();
+            $table->enum('status', ['baru', 'proses','selesai', 'diambil'])->default('baru');
+            $table->enum('dibayar', ['dibayar','belum_dibayar'])->default('belum_dibayar');
             $table->timestamps();
         });
     }

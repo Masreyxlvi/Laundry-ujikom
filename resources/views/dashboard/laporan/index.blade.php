@@ -4,6 +4,26 @@
 <h3>Laporan</h3>
 	<div class="card">
 		<div class="card-body">
+			<form action="/laporan">
+				{{-- @csrf --}}
+				<div class="row mb-2">
+					<label for="nama" class="col-lg-2 col-form-label">Tanggal Transaksi  </label>
+					<div class="col-lg-3">
+						<input type="date" name="start_date" class="form-control @error('search') is-invalid @enderror"  value="">
+					</div>
+					{{-- <label for="nama" class="col-lg-1 col-form-label"> </label> --}}
+					<label for="nama" class="col-lg-1 col-form-label"> </label>
+					<div class="col-lg-3 text-end"> 
+						{{-- @foreach ($users as $user) --}}
+						<input type="date" name="end_date" class="form-control @error('search') is-invalid @enderror"  id=""  value="">
+							{{-- <input type="text" name="outlet_id" class="form-control text-center @error('outlet_id') is-invalid @enderror"  id="tgl"  value="{{ strtoupper($user->outlet->nama) }}"> --}}
+						{{-- @endforeach --}}
+					</div>  
+					<div class="col-lg-2">
+						<button type="submit" class="btn btn-primary">Search</button>
+					</div>
+				</div>
+			</form>
 			<div class="table-responsive">
 				<table class="table user-table" id="order-listing">
 					<thead>

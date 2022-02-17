@@ -7,10 +7,10 @@
 		<h4 class="card-title">Transaksi</h4>
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
-			  <a class="nav-link active" data-bs-toggle="collapse" id="cucianBaru" href="#CucianBaru" role="button" aria-expanded="false" aria-controls="collapseExample">Cucian Baru</a>
+			  <a class="nav-link active link-danger" data-bs-toggle="collapse" id="nav-data" href="#CucianBaru" role="button" aria-expanded="false" aria-controls="collapseExample">Cucian Baru</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link" data-bs-toggle="collapse" href="#Proses" role="button" id="proses" aria-expanded="false" aria-controls="collapseExample" href="#">&nbsp;&nbsp; Link</a>
+			  <a class="nav-link link-danger" data-bs-toggle="collapse" href="#Proses" role="button" id="nav-pembayaran" aria-expanded="false" aria-controls="collapseExample" style="text-decoration: none">&nbsp;&nbsp; Langsung Bayar</a>
 			</li>
 		</ul>
 		@if($errors->any())
@@ -30,14 +30,7 @@
 				{{session('succes')  }}
 			</div>
 			@endif
-			<div class="collapse" id="CucianBaru">
-				<div class="card">
-					<div class="card-body">
-						@include('dashboard.transaksi.pilih')
-					
-						</div>
-					</div>
-				</div>
+			@include('dashboard.transaksi.pilih')	
 			</div>
 	</div>
 </form>
@@ -48,15 +41,22 @@
   @endsection
 @push('script')
 	<script>
-		$('#CucianBaru').collapse('show')
+			$('#nav-data').collapse('show');
 
-			$('#CucianBaru').on('show.bs.collapse', function(){
-				$('#Proses').collapse('hide');
-				$('#cucianBaru').removeClass('active');
-				$('#proses').addClass('active');
-				
-			})
+				$('#CucianBaru').on('show.bs.collapse', function(){
+					$('#Proses').collapse('hide');
+					$('#nav-data').removeClass('active');
+					$('#nav-pembayaran').addClass('active');	
+				});
 
+				$('#Proses').on('show.bs.collapse', function(){
+					$('#CucianBaru').collapse('hide');
+					$('#nav-pembayaran').removeClass('active');
+					$('#nav-data').addClass('active');	
+				});
+
+	</script>
+	<script>
 		// memilih data member
 			$(function(){
 			$('#tbl-member').DataTable();
@@ -104,7 +104,7 @@
 					data += '<td><button type="button" class="hapusBarang btn btn-outline-danger"><i class="mdi  mdi-delete"></i></button></td>';
 					data += '</tr>'
 					if(tbody == 'Belum Ada Paket') $('#tbl-transaksi tbody tr').remove();
-
+  
 					$('#tbl-transaksi tbody').append(data);
 					totalHarga += parseFloat(harga);
 					$('#totalHarga').val(totalHarga);
