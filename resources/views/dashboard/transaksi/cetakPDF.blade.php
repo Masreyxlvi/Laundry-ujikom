@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<title>Document</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 	<div class="card">
@@ -50,7 +50,7 @@
 				  </div>
 				  <div class="col-md-12">
 					<div
-					  class="table-responsive mt-5"
+					  class="table-responsive mt-4"
 					  style="clear: both"
 					>
 	
@@ -70,7 +70,7 @@
 								@foreach ($transaksi->DetailTransaksi as $p)		
 								<tr>
 									<td class="text-center">{{ $loop->iteration }}</td>
-									<td>{{ $p->paket->nama_paket }}</td>
+									<td class="text-center">{{ $p->paket->nama_paket }}</td>
 									<td class="text-end">
 										@if ($p->paket->jenis == 'bed_cover')
 										Bed Cover
@@ -100,16 +100,21 @@
 				  @endphp --}}
 				  <div class="col-md-12">
 					<div class="pull-right mt-4 text-end">
-					  <p>Sub - Total : Rp. {{ number_format( $transaksi->total ) }}</p>
+					  <p>Sub - Total : Rp. {{ number_format( $transaksi->total ) }}</p> 
 					  <p>Biaya Tambahan : Rp. {{ number_format( $transaksi->biaya_tambahan) }}</p>
 					  <p>Pajak : Rp. {{ number_format( $transaksi->pajak) }}%</p>
 					  <p>Diskon : Rp. {{ number_format( $transaksi->diskon) }}%</p>
 					  <hr />
-					  <h3><b>Total :</b> $26,778</h3>
+					  {{-- @php
+						$jumlah = $transaksi->total + $transaksi->biaya_tambahan;
+						$diskon = $transaksi->diskon/100 * $jumlah;
+						$pajak =$transaksi->pajak/100 * $jumlah  ;  
+					  @endphp --}}
+					  <h3><b>Total :</b>Rp. {{ number_format($transaksi->total ) }}</h3>
 					</div>
-					<div class="clearfix"></div>
+					<div class="clearfix"></div>    
 					<hr />
-				
+					
 				  </div>
 				</div>
 			</div>
@@ -117,3 +122,4 @@
 	</div>
 </body>
 </html>
+{{-- @endsection --}}

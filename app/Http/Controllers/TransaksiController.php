@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use App\Http\Requests\StoreTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
-use Barryvdh\DomPDF\Facade as PDF;
+// use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Detail_Transaksi;
 use App\Models\Member;
 use App\Models\outlet;
 use App\Models\Paket;
 use App\Models\User;
 use Illuminate\Http\Request;
-// use PDF;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
@@ -24,20 +24,14 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
-        $transaksi = null;
-
-        if($request->has('status')) {
-            $transaksi = Transaksi::where('status', $request->status)->get();
-        }else{
-            $transaksi = Transaksi::get();
-        }
+       
         return view('dashboard.transaksi.index',[
             'title' =>'Transaksi',
             'pakets' => Paket::all(),
             'members' => Member::all(),
             'outlets' => outlet::all(),
             // 'users' => User::where('id' , auth()->user()->id)->get()
-            'transaksis' => $transaksi
+            // 'transaksis' => $transaksi
 
         ]);
     }
@@ -60,10 +54,10 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        $d = Transaksi::orderBy('id', 'desc')->first();
-        $urutan = ($d == null?1:substr($d->kode_invoice,5,6)+1);
+        // $d = Transaksi::orderBy('id', 'desc')->first();
+        // $urutan = ($d == null?1:substr($d->kode_invoice,5,6)+1);
 
-        $kode_invoice = sprintf('GL' .date('Y') .'%05d' ,$urutan); 
+        // $kode_invoice = sprintf('GL' .date('Y') .'%05d' ,$urutan); 
 
         // dd($kode_invoice);
         $validate = $request->validate([
@@ -84,7 +78,7 @@ class TransaksiController extends Controller
             'sub_total' => 'required',
         ]);
         $validate['user_id'] = Auth::id();
-        $validate['kode_invoice'] = $kode_invoice;
+        $validate['kode_invoice'] = Transaksi::createInvoice();
 
         // dd($validate);
         $input_transkasi =  Transaksi::create($validate);
@@ -107,7 +101,11 @@ class TransaksiController extends Controller
            $input_detail_pembelian =  Detail_Transaksi::create($validate);
         //    dd($validate);
          }
-        return redirect('/transaksi/faktur/'.$input_transkasi->id);
+         if($validate['status'] != 'dibayar'){
+             return redirect('/transaksi/faktur/'.$input_transkasi->id);
+         }else{
+            return redirect('/transaksi')->with('succes', 'Transaksi Berhasil');
+         }
 
     }
 
@@ -128,9 +126,19 @@ class TransaksiController extends Controller
      * @param  \App\Models\Transaksi  $transaksi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaksi $transaksi)
+    public function edit(Request $request, Transaksi $transaksi)
     {
-        //
+        $transaksi = null;
+
+        if($request->has('status')) {
+            $transaksi = Transaksi::where('status', $request->status)->get();
+        }else{
+            $transaksi = Transaksi::get();
+        }
+
+        return view('dashboard.transaksi.update', [
+            'transaksi' => $transaksi
+        ]);
     }
 
     /**
@@ -172,16 +180,24 @@ class TransaksiController extends Controller
         $transaksi->load(['member','DetailTransaksi']);
         return view('dashboard.transaksi.faktur')->with($data);
     }
-
-    // public function exportPDF(Request $request, Transaksi $transaksi, $id) {
+  
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Transaksi  $transaksi
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function exportPDF(Request $request, Transaksi $transaksi, $id) {
        
-    //     $data = array(
-    //         'transaksi' => Transaksi::find($id),
-    //         'title' => 'Faktur'
-    //     );
-    //     $transaksi->load(['member','DetailTransaksi']);
-    //     return PDF::loadView('dashboard.transaksi.cetakPDF')->with($data)->stream();
+        $transaksi = Transaksi::find($id);
+        // dd($data);
+        $transaksi->load(['member','DetailTransaksi']);
+        // dd($transaksi);
+        $pdf = PDF::loadView('dashboard.transaksi.cetakPDF', compact('transaksi', $transaksi));
+
+        return $pdf->stream();
         
-    //   }
+      }
 }
 

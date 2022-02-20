@@ -6,20 +6,20 @@
 		<div class="card-body">
 			<form action="/laporan">
 				{{-- @csrf --}}
-				<div class="row mb-2">
-					<label for="nama" class="col-lg-2 col-form-label">Tanggal Transaksi  </label>
-					<div class="col-lg-3">
+				<div class="row mb-5 ">
+					<label for="nama" class="col-lg-2 col-form-label"><b>DARI TANGGAL</b>  </label>
+					<div class="col-lg-4">
 						<input type="date" name="start_date" class="form-control @error('search') is-invalid @enderror"  value="">
 					</div>
 					{{-- <label for="nama" class="col-lg-1 col-form-label"> </label> --}}
-					<label for="nama" class="col-lg-1 col-form-label"> </label>
-					<div class="col-lg-3 text-end"> 
+					<label for="nama" class="col-lg-1 col-form-label"><b>SAMPAI</b> </label>
+					<div class="col-lg-4 text-end"> 
 						{{-- @foreach ($users as $user) --}}
 						<input type="date" name="end_date" class="form-control @error('search') is-invalid @enderror"  id=""  value="">
 							{{-- <input type="text" name="outlet_id" class="form-control text-center @error('outlet_id') is-invalid @enderror"  id="tgl"  value="{{ strtoupper($user->outlet->nama) }}"> --}}
 						{{-- @endforeach --}}
 					</div>  
-					<div class="col-lg-2">
+					<div class="col-lg-1">
 						<button type="submit" class="btn btn-primary">Search</button>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 						@foreach ($transaksis as $key => $transaksi)
 						<tr class="text-center">
 							<td>{{ $transaksi->kode_invoice }}</td>
-							<td>{{ $transaksi->member->nama }}</td>
+							<td>{{ $transaksi->member->nama}}</td>
 							{{-- <td>{{ $transaksi->user->name }}</td>
 							<td>{{ $transaksi->user->outlet->nama }}</td> --}}
 							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->tgl) ) }}</td>
@@ -71,6 +71,7 @@
 					</tbody>
 				</table>
 			</div>
+			
 			@include('dashboard.laporan.detail_transaksi')
 		</div>
 	</div>

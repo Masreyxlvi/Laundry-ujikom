@@ -10,7 +10,7 @@
 			  <a class="nav-link active link-danger" data-bs-toggle="collapse" id="nav-data" href="#CucianBaru" role="button" aria-expanded="false" aria-controls="collapseExample">Cucian Baru</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link link-danger" data-bs-toggle="collapse" href="#Proses" role="button" id="nav-pembayaran" aria-expanded="false" aria-controls="collapseExample" style="text-decoration: none">&nbsp;&nbsp; Langsung Bayar</a>
+			  <a class="nav-link link-danger" data-bs-toggle="collapse" name="bayar"  href="#Proses" role="button" id="nav-pembayaran" aria-expanded="false" aria-controls="collapseExample" style="text-decoration: none">&nbsp;&nbsp; Langsung Bayar</a>
 			</li>
 		</ul>
 		@if($errors->any())

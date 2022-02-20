@@ -93,13 +93,12 @@
 			  @endphp --}}
 			  <div class="col-md-12">
 				<div class="pull-right mt-4 text-end">
-				  <p>Sub - Total : Rp. {{ number_format( $transaksi->total ) }}</p>
+				  <p>Sub - Total : Rp. {{ number_format( $transaksi->total ) }}</p> 
 				  <p>Biaya Tambahan : Rp. {{ number_format( $transaksi->biaya_tambahan) }}</p>
 				  <p>Pajak : Rp. {{ number_format( $transaksi->pajak) }}%</p>
 				  <p>Diskon : Rp. {{ number_format( $transaksi->diskon) }}%</p>
 				  <hr />
 				  @php
-
 					$jumlah = $transaksi->total + $transaksi->biaya_tambahan;
 					$diskon = $transaksi->diskon/100 * $jumlah;
 					$pajak =$transaksi->pajak/100 * $jumlah  ;  
@@ -109,19 +108,19 @@
 				<div class="clearfix"></div>    
 				<hr />
 				<div class="text-end">
-						<button class="btn btn-danger mb-2"  type="submit">
+						<a class="btn btn-danger "  href="/transaksi">
 							Proceed to payment
-						</button>
-						<form action="/transaksi/cetak_pdf/{{ $transaksi->id }}" class="border-0">
-							@csrf
-						<button
-						class="btn btn-default print-page" target="_blank"
+						</a>
+						{{-- <form action="/transaksi/cetak_pdf/{{ $transaksi->id }}" class="border-0"> --}}
+							{{-- @csrf --}}
+						<a
+						class="btn btn-default print-page " target="_blank"
 						title="Cetak nota"
-						type="submit"
+							href="/transaksi/cetak_pdf/{{ $transaksi->id }}"
 						>
 						<span><i class="fa fa-print"></i> Print</span>
-					</button>
-				</form>
+					</a>
+				{{-- </form> --}}
 				</div>
 			  </div>
 			</div>

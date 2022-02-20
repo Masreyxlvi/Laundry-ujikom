@@ -11,18 +11,20 @@ class LaporanController extends Controller
 {
     public function laporan()
     {
+        // return  $data = Transaksi::with('member')->latest()->get();
+
         if (request()->start_date || request()->end_date) {
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
-            $data = Transaksi::whereBetween('tgl',[$start_date,$end_date])->get();
+            $transaksi = Transaksi::whereBetween('tgl',[$start_date,$end_date])->get();
         } else {
-            $data = Transaksi::latest()->get();
+            $transaksi = Transaksi::latest()->get();
         }
-        
+        // $transaksis->load('member');
+        // dd($data);
         return view('dashboard.laporan.index',[
-            'transaksis' => $data,
-            'users' => User::where('id' , auth()->user()->id)->get(),
-            'title' => 'Laporan'
+            'title' => 'Laporan',
+            'transaksis' => $transaksi
         ]);
     }
 

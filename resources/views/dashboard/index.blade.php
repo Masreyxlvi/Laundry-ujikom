@@ -24,7 +24,7 @@
 		  </div>
 		  <div class="ms-2 align-self-center">
 			<h3 class="mb-0">Rp . {{  number_format($total) }}</h3>
-			<h6 class="text-muted mb-0">Total Revenue</h6>
+			<h6 class="text-muted mb-0">Total Penghasilan</h6>
 		  </div>
 		</div>
 	  </div>
@@ -49,12 +49,12 @@
 		  >
 			<i
 			  data-feather="monitor"
-			  class="bi bi-people"
+			  class="bi bi-cart-plus"
 			></i>
 		  </div>
 		  <div class="ms-2 align-self-center">
-			<h3 class="mb-0">{{ $member }}</h3>
-			<h6 class="text-muted mb-0">Total Member</h6>
+			<h3 class="mb-0">{{ $transaksi }}</h3>
+			<h6 class="text-muted mb-0">Total Transaksi</h6>
 		  </div>
 		</div>
 	  </div>
@@ -79,12 +79,12 @@
 		  >
 			<i
 			  data-feather="shopping-bag"
-			  class="fill-white feather-lg"
+			  class=" bi bi-people"
 			></i>
 		  </div>
 		  <div class="ms-2 align-self-center">
-			<h3 class="mb-0">$1795</h3>
-			<h6 class="text-muted mb-0">Offline Products</h6>
+			<h3 class="mb-0">{{ $member }}</h3>
+			<h6 class="text-muted mb-0">Total Member</h6>
 		  </div>
 		</div>
 	  </div>
@@ -113,8 +113,8 @@
 			></i>
 		  </div>
 		  <div class="ms-2 align-self-center">
-			<h3 class="mb-0">$687</h3>
-			<h6 class="text-muted mb-0">Ad. Expense</h6>
+			<h3 class="mb-0">{{ $paket }}</h3>
+			<h6 class="text-muted mb-0">Total Paket</h6>
 		  </div>
 		</div>
 	  </div>

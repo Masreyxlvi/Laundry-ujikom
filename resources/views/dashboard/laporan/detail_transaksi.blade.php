@@ -12,17 +12,18 @@
 				<table class="table" >
 				<thead>
 					<tr>
-					<th>Kode Invoice</th>
+					<th>#</th>
 					<th>Nama Paket</th>
 					<th>Jenis Paket</th>
 					<th>Qty</th>
+					<th>Sub Total</th>
 					<th>Keterangan</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($transaksi->DetailTransaksi as $p)		
 					<tr>
-						<td>{{ $p->transaksi->kode_invoice }}</td>
+						<td>{{ $loop->iteration }}</td>
 						<td>{{ $p->paket->nama_paket }}</td>
 						<td>
 							@if ($p->paket->jenis == 'bed_cover')
@@ -32,6 +33,7 @@
 						@endif	
 						</td>
 						<td>{{ $p->qty }}</td>
+						<td>{{ $p->sub_total }}</td>
 						<td>
 							@if ($p->keterangan == '')
 							<i>Tidak Ada Keterangan</i>

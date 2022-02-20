@@ -11,26 +11,16 @@ class Transaksi extends Model
 
     protected $guarded = ['id'];
 
-    public function member()
-    {
-        return $this->belongsTo(Member::class);
-    }
-
+ 
     public function outlet()
     {
         return $this->belongsTo(Outlet::class);
     }
 
-    // public function scopeFilter($query, array $filters)
-    // {
-    //     $query->when($filters['search'] ?? false, function($query, $seacrh) {
-    //         return $query->where('tgl', 'like', '%' . $seacrh . '%');
-    //     });
-    // }
-    // public function detail()
-    // {
-    //     return $this->hasMany(Detail_Transaksi::class);
-    // }
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
     
     public function user()
     {
@@ -43,12 +33,12 @@ class Transaksi extends Model
         return $this->hasMany(Detail_Transaksi::class);
     }
     
-    public static function get_code()
+    public static function createInvoice()
     {
-        $no_urut = self::selectRaw("IFNULL(MAX(SUBSTRING(`kode_invoice`,8,5)),0) + 1 AS no_urut")->orderBy('no_urut')->first()->no_urut;
-        $kode_invoice = "GL" . date("Ym") . sprintf("%'.02d", $no_urut);
-        return $kode_invoice;
-    }
+        $lastNumber = self::selectRaw("IFNULL(MAX(SUBSTRING(`kode_invoice`,9,5)),0) + 1 AS last_number")->whereRaw("SUBSTRING(`kode_invoice`,1,4) = '" . date('Y') . "'")->whereRaw("SUBSTRING(`kode_invoice`,5,2) = '" . date('m') . "'")->orderBy('last_number')->first()->last_number;
+        $invoice =  date("Ymd") . sprintf("%'.05d", $lastNumber);
+        return $invoice;
+    } 
 
     public function getSubTotal()
     {

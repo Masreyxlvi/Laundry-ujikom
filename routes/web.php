@@ -26,13 +26,16 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/dashboard', function () {
-    $total = Transaksi::get()->sum('total');
+    $total = Transaksi::where('tgl', date('Y-m-d'))->get()->sum('total');
+    $paket = Paket::get()->count('id');
     $member = Member::get()->count('id');
-    return view('dashboard.index' , compact('total',$total,'member', $member), [
+    $transaksi = Transaksi::where('tgl', date('Y-m-d'))->get()->count('id');
+    return view('dashboard.index' , compact('total',$total,'paket',$paket,'member', $member,'transaksi', $transaksi), [
         'title' => 'Dashboard',
     ]);
 });
 
+// Route::get('transaksi/update')
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);

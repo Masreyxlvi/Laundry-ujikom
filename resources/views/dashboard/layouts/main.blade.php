@@ -11,10 +11,10 @@
     <meta name="description"
         content="Material Pro Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>GHS Laundry</title>
+    <title>GHS Laundry  | {{ $title }}</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('vendors') }}/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('vendors') }}/assets/images/ghs.png">
     {{-- Icon Boostrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- chartist CSS -->

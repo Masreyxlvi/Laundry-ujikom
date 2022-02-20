@@ -88,7 +88,7 @@
       content="Material Pro is powerful and clean admin dashboard template"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Material Pro Template by WrapPixel</title>
+    <title>GHS Laundry | {{ $title }}</title>
     <link
       rel="canonical"
       href="https://www.wrappixel.com/templates/materialpro/"
@@ -98,7 +98,7 @@
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="{{ asset('vendors') }}/assets/images/favicon.png"
+      href="{{ asset('vendors') }}/assets/images/ghs.png"
     />
     <!-- Custom CSS -->
     <link href="{{ asset('vendors') }}/css/style.min.css" rel="stylesheet" />
