@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\outlet;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -115,10 +116,10 @@ class RegisterController extends Controller
 
         // $validate = $request->validate($rules);
         // dd($validate);
-        User::where('id', $user->id)
+        User::where('id', Auth::id())
                         ->update($validate);
         
-        return redirect('/register')->with('succes', 'Data Has Been Updated');
+        return back()->with('succes', 'Data Has Been Updated');
 
     }
 

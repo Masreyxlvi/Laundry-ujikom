@@ -24,14 +24,20 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
-       
+        // $transaksi = null;
+
+        // if($request->has('status')) {
+        //     $transaksi = Transaksi::where('status', $request->status)->get();
+        // }else{
+        //     $transaksi = Transaksi::get();
+        // }
         return view('dashboard.transaksi.index',[
             'title' =>'Transaksi',
-            'pakets' => Paket::all(),
+            'pakets' => Paket::where('outlet_id', auth()->user()->outlet_id)->get(),
             'members' => Member::all(),
             'outlets' => outlet::all(),
             // 'users' => User::where('id' , auth()->user()->id)->get()
-            // 'transaksis' => $transaksi
+            'transaksis' => Transaksi::where('status', 'baru')->get()
 
         ]);
     }
@@ -103,8 +109,8 @@ class TransaksiController extends Controller
          }
          if($validate['status'] != 'dibayar'){
              return redirect('/transaksi/faktur/'.$input_transkasi->id);
-         }else{
-            return redirect('/transaksi')->with('succes', 'Transaksi Berhasil');
+            }else{
+                return redirect('/transaksi')->with('succes', 'Transaksi Berhasil');
          }
 
     }
@@ -128,13 +134,7 @@ class TransaksiController extends Controller
      */
     public function edit(Request $request, Transaksi $transaksi)
     {
-        $transaksi = null;
-
-        if($request->has('status')) {
-            $transaksi = Transaksi::where('status', $request->status)->get();
-        }else{
-            $transaksi = Transaksi::get();
-        }
+      
 
         return view('dashboard.transaksi.update', [
             'transaksi' => $transaksi

@@ -26,6 +26,7 @@
     <link href="{{ asset('vendors') }}/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('vendors') }}/css/style.min.css" rel="stylesheet">
+    @stack('head')
 </head>
 
 <body>

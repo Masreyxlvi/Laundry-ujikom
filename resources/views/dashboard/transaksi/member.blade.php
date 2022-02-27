@@ -48,3 +48,36 @@
 	  </div>
 	</div>
   </div>
+<div class="modal fade" id="DataMember" tabindex="-1" aria-labelledby="DataMemberLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="DataMemberLabel">Data Member</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<div class="mb row">
+				<label for="nama" class="col-sm-3 col-form-label">Nama  </label>
+				<label for="nama" class="col-sm-1 col-form-label">:</label>
+				<div class="col-sm-8">
+					<input type="text" readonly class="form-control-plaintext" id="nama" >
+				</div>
+			</div>
+			<div class="mb row">
+				<label for="username" class="col-sm-3 col-form-label">Telp  </label>
+				<label for="username" class="col-sm-1 col-form-label">:</label>
+				<div class="col-sm-8">
+					<input type="text" readonly name="telp" class="form-control-plaintext" id="telp">
+				</div>
+			</div>
+			<div class="mb row">
+				<label for="alamat" class="col-sm-3 col-form-label">Alamat  </label>
+				<label for="alamat" class="col-sm-1 col-form-label">:</label>
+				<div class="col-sm-8">
+					<input type="text" readonly name="alamat" class="form-control-plaintext" id="alamat" >
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+  </div>

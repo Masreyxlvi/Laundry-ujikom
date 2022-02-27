@@ -98,12 +98,12 @@
 				  <p>Pajak : Rp. {{ number_format( $transaksi->pajak) }}%</p>
 				  <p>Diskon : Rp. {{ number_format( $transaksi->diskon) }}%</p>
 				  <hr />
-				  @php
+				  {{-- @php
 					$jumlah = $transaksi->total + $transaksi->biaya_tambahan;
 					$diskon = $transaksi->diskon/100 * $jumlah;
 					$pajak =$transaksi->pajak/100 * $jumlah  ;  
-				  @endphp
-				  <h3><b>Total :</b>Rp. {{ number_format($jumlah +$pajak -$diskon ) }}</h3>
+				  @endphp --}}
+				  <h3><b>Total :</b>Rp. {{ number_format($transaksi->total ) }}</h3>
 				</div>
 				<div class="clearfix"></div>    
 				<hr />
