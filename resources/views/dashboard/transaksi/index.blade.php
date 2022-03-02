@@ -7,14 +7,14 @@
 <form action="/transaksi" method="post" id="formTransaksi">
 	@csrf
 	<h4 class="card-title">Transaksi</h4>
-	<ul class="nav nav-tabs">
+	{{-- <ul class="nav nav-tabs">
 		<li class="nav-item">
 		  <a class="nav-link active link-danger" data-bs-toggle="collapse" id="nav-data" href="#CucianBaru" role="button" aria-expanded="false" aria-controls="collapseExample"> Cucian Baru</a>
 		</li>
 		<li class="nav-item">
 		  <a class="nav-link link-danger" data-bs-toggle="collapse" name="bayar"  href="#Proses" role="button" id="nav-pembayaran" aria-expanded="false" aria-controls="collapseExample">&nbsp;&nbsp; <label for="dibayar">Langsung Bayar</label> </a>
 		</li>
-	</ul>
+	</ul> --}}
 	<div class="col-lg-12">
 		@if($errors->any())
 		<div class="alert alert-danger" role="alert" id="error-alert">
@@ -87,7 +87,16 @@
 			});
 			
 		})
+		
 		// end milih data member
+		const updateRowNumber = function() {
+				setTimeout(() => {
+					let tr = $('#tbl-transaksi').find('tbody tr');
+					tr.each((i, d) => {
+							$(d).find('td:eq(0)').text(++i);
+					});
+				});
+			}
 		// memilih data Paket
 				let totalHarga = 0;
 				function TambahPaket(a){
@@ -125,11 +134,11 @@
 				let harga = parseFloat($(a).closest('tr').find('td:eq(2)').text());
 				let subTotalAwal = parseFloat($(a).closest('tr').find('.subTotal').val());
 				// let biaya_tambahan = Number($('#biayaTambahan').val());
-				let subTotal = qty * harga;
-				totalHarga += subTotal - subTotalAwal ;
+				let couth = qty * harga;    
+				total =totalHarga  - subTotalAwal + couth ;
 				// let pajak = number($('#pajak').val())/100*subTotal;
 				// let diskon = number($('#diskon').val())/100*subTotal;
-				total = totalHarga - diskon + 
+				// total = totalHarga - diskon + 
 				$(a).closest('tr').find('.subTotal').val(subTotal);
 				$('#totalHarga').val(totalHarga);
 			}
@@ -155,32 +164,35 @@
 
 			// event
 			$(function(){
-				$('tbl-paket').DataTable();
+				let itemsTable = $('tbl-paket').DataTable();
 
 				// pemilihan paket
 				$('#paket').on('click', '.pilih-paket', function(){
-					TambahPaket(this);
+						TambahPaket(this)
+					
+					// updateRowNumber();
 				});
 				// change qty event
-				$('#formTransaksi').on('change', '.qty', function(){
+				$('#formTransaksi').on('keydown change', '.qty', function(){
 					calcSubTotal(this);
 				});
 
-				$('#formTransaksi').on('change', '.pajak', function(){
+				$('#formTransaksi').on('keyup change', '.pajak', function(){
 					UpdateTotal(this);
 					
 				});
 				
-				$('#formTransaksi').on('change', '.diskon', function(){
+				$('#formTransaksi').on('keyup change', '.diskon', function(){
 					UpdateTotal(this);	
 				});
 
-				$('#formTransaksi').on('change', '.biayaTambahan', function(){
+				$('#formTransaksi').on('keyup change', '.biayaTambahan', function(){
 					UpdateTotal(this);	
 				});
 				// remove barang
 				$('#formTransaksi').on('click', '.hapusBarang', function(){
 					let subTotalAwal = parseFloat($(this).closest('tr').find('.subTotal').val());
+					let diskon = Number($('.diskon').val());
 					totalHarga -= subTotalAwal;
 					// alert(totalHarga)
 					$currentRow = $(this).closest('tr').remove();

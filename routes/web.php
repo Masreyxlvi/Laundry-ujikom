@@ -10,6 +10,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TransaksiController;
 use App\Models\Member;
+use App\Models\Outlet;
 use App\Models\Paket;
 use App\Models\Transaksi;
 use App\Models\User;
@@ -55,3 +56,7 @@ Route::resource('/transaksi', TransaksiController::class)->middleware('role:admi
 Route::get('/transaksi/faktur/{faktur}', [TransaksiController::class, 'faktur']);
     
 Route::get('/transaksi/cetak_pdf/{cetak_pdf}', [TransaksiController::class, 'exportPDF']);    
+Route::get('/outlet/cetak_pdf/', [OutletController::class, 'PDF']);    
+Route::get('/outlet/export_excel/', [OutletController::class, 'export']);    
+
+Route::post('/outlet/import', [OutletController::class, 'import']);

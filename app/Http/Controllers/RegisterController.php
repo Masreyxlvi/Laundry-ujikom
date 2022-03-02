@@ -6,6 +6,7 @@ use App\Models\outlet;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -17,6 +18,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        Gate::authorize('admin');
         return view('dashboard.profil.index',[
             'users' => User::all(),
             'outlets' => outlet::all(),
@@ -31,6 +33,7 @@ class RegisterController extends Controller
      */
     public function create()
     {
+        Gate::authorize('admin');
         return view('dashboard.profil.create',[
             'title' => 'User',
             'outlets' => outlet::all(),

@@ -69,7 +69,7 @@ class TransaksiController extends Controller
         $validate = $request->validate([
             'outlet_id' => 'required',
             'member_id' => 'required',
-            'paket_id' => 'required',
+            'paket_id' => 'required|array',
             'tgl' => 'required|date',
             'tgl_bayar' => 'nullable',
             'batas_waktu' => 'nullable|date',
@@ -107,7 +107,7 @@ class TransaksiController extends Controller
            $input_detail_pembelian =  Detail_Transaksi::create($validate);
         //    dd($validate);
          }
-         if($validate['status'] != 'dibayar'){
+         if($request->status == 'dibayar'){
              return redirect('/transaksi/faktur/'.$input_transkasi->id);
             }else{
                 return redirect('/transaksi')->with('succes', 'Transaksi Berhasil');

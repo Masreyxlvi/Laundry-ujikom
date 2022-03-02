@@ -27,7 +27,7 @@
 							<td>{{ $paket->harga }}</td>
 							{{-- <td>{{ $paket->alamat }}</td> --}}
 							<td>
-							  <button type="button" class=" pilih-paket btn btn-primary">Pilih</button>
+							  <button type="button" class=" pilih-paket btn btn-primary" data-service-id="${id}">Pilih</button>
 							</td>
 						</tr>
 						@endforeach

@@ -69,7 +69,7 @@
 								<input type="number" class="form-control diskon" name="diskon" value="0" aria-label="diskon">
 								<span class="input-group-text">%</span>
 								<input type="text" class="form-control text-end" readonly id="totalDiskon" placeholder="Rp.0" aria-label="Server">
-							</div>			
+							</div>			 
 							<label for="nama" class="col-form-label"><b> Pajak </b> </label>
 								<div class="input-group ">
 									<input type="number" class="form-control pajak" name="pajak" value="0" aria-label="pajak">

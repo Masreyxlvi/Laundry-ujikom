@@ -28,7 +28,7 @@
 				Tambah Data
 			</button>
 			<div class="table-responsive">
-				<table class="table user-table" id="order-listing">
+				<table class="table user-table table-paket" id="order-listing">
 					<thead>
 						<tr>
 							<th class="border-top-0">#</th>

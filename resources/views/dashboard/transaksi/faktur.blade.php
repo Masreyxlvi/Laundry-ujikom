@@ -93,7 +93,7 @@
 			  @endphp --}}
 			  <div class="col-md-12">
 				<div class="pull-right mt-4 text-end">
-				  <p>Sub - Total : Rp. {{ number_format( $transaksi->total ) }}</p> 
+				  <p>Sub - Total : Rp. {{ number_format( $p->sub_total ) }}</p> 
 				  <p>Biaya Tambahan : Rp. {{ number_format( $transaksi->biaya_tambahan) }}</p>
 				  <p>Pajak : Rp. {{ number_format( $transaksi->pajak) }}%</p>
 				  <p>Diskon : Rp. {{ number_format( $transaksi->diskon) }}%</p>

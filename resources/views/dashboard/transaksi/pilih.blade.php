@@ -1,4 +1,4 @@
-<div class="collapse" id="CucianBaru">
+{{-- <div class="collapse" id="CucianBaru"> --}}
 	<div class="card">
 		<div class="card-body">
 			<div class="row">
@@ -36,6 +36,7 @@
 							<table class="table " id="tbl-transaksi">
 							<thead>
 									<tr>
+									{{-- <th>#</th> --}}
 									<th>Nama Paket</th>
 									<th>Jenis</th>
 									<th>Harga</th>
@@ -49,6 +50,9 @@
 									{{-- @foreach ($produks as $produk) --}}
 								<tr>
 									<td colspan="6" class="text-center"><i>Belum Ada Paket</i></td>
+								</tr>
+								<tr>
+									<td><input type="number" class="form-control" id="sub_total"></td>
 								</tr>
 									{{-- @endforeach --}}
 							</tbody>
@@ -73,7 +77,7 @@
 				</div>
 		</div>
 	</div>
-</div>
+{{-- </div> --}}
 @push('script')
 	<script>
 		Date.prototype.toDateInputValue = (function() {

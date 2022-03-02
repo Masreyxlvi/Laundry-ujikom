@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Models\outlet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\OutletExport;
+use App\Imports\OutletImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OutletController extends Controller
 {
@@ -109,4 +114,46 @@ class OutletController extends Controller
 
         return redirect('/outlet')->with('succes', 'Data Has Been Deleted!!');
     }
+
+    public function Pdf(outlet $outlet)
+    {
+        $outlet = outlet::all();
+
+        $pdf = PDF::loadView('dashboard.outlet.exportPDF',[
+            'outlet' => $outlet
+        ]);
+
+        return $pdf->stream();
+    }
+
+    public function export() 
+    {
+        return Excel::download(new OutletExport, 'outlet.xlsx');
+    }
+
+    public function import(Request $request) 
+    {
+        $this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file',$nama_file);
+ 
+		// import data
+		Excel::import(new OutletImport, public_path('/file/'.$nama_file));
+ 
+		// notifikasi dengan session
+		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect('/member')->with('succes', 'Import Has Been Succes');
+    }
+     
 }
