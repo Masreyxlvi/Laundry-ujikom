@@ -153,7 +153,7 @@ class OutletController extends Controller
 		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
  
 		// alihkan halaman kembali
-		return redirect('/member')->with('succes', 'Import Has Been Succes');
+		return redirect('/outlet')->with('succes', 'Import Has Been Succes');
     }
      
 }

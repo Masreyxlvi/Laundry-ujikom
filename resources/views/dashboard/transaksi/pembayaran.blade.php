@@ -61,7 +61,7 @@
 				<div class="col-lg-6">
 						<div class="d-none" id="bayar-now">
 							<label for="tgl" class="col-form-label"><b>Tanggal Bayar</b>  </label>
-								<input type="date" name="tgl_bayar" class="form-control @error('tgl_bayar') is-invalid @enderror"  id="tgl_masuk"  value="{{ old('tgl_bayar') }}">
+								<input type="date" name="tgl_bayar" class="form-control @error('tgl_bayar') is-invalid @enderror"   value="{{ old('tgl_bayar') }}">
 							<label for="nama" class="col-form-label"><b> Biaya Tambahan </b> </label>
 								<input type="number" name="biaya_tambahan" class="form-control biayaTambahan @error('biaya_tambahan') is-invalid @enderror"  id="biayaTambahan"  value="0">					
 							<label for="nama" class="col-form-label"><b> Diskon </b> </label>

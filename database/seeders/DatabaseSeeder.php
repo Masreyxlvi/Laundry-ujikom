@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(7)->create();
-        Outlet::factory(10)->create();
+        Outlet::factory(3)->create();
         Member::factory(10)->create();
         Paket::factory(10)->create();
 
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'Masrey',
             'email' => 'reyhantriramadan@gmail.com',
             'password' => bcrypt('masrey2246'),
-            'outlet_id' => '3',
+            'outlet_id' => '1',
             'role' => 'admin',
             'is_super' =>   1
         ]);

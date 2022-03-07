@@ -25,6 +25,7 @@
     <!--This page css - Morris CSS -->
     <link href="{{ asset('vendors') }}/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('vendors') }}/assets/sweetalert2/sweetalert2.min.css">
     <link href="{{ asset('vendors') }}/css/style.min.css" rel="stylesheet">
     @stack('head')
 </head>
@@ -127,6 +128,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="{{ asset('vendors') }}/assets/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('vendors') }}/assets/sweetalert2/sweetalert2.min.js"></script>
     <script src="{{ asset('vendors') }}/assets/sweetalert/sweetalert.min.js"></script>
     <script src="{{ asset('vendors') }}/assets/datatables.net/jquery.dataTables.js"></script>
     <!-- Bootstrap tether Core JavaScript -->

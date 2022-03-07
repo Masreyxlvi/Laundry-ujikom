@@ -47,70 +47,37 @@
 						href="/register" aria-expanded="false"><i
 							class="mdi me-2 mdi-account"></i><span class="hide-menu">User</span></a>
 				</li>
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('simulasi*') ? 'active' : ' ' }}"
+						href="/simulasi" aria-expanded="false"><i
+							class="mdi me-2 mdi-account"></i><span class="hide-menu">Simulasi</span></a>
+				</li>
 				@endcan
+				{{-- transaksi --}}
 				<li class="nav-small-cap">
-					{{-- <i class="mdi mdi-dots-horizontal"></i> --}}
 					<span class="hide-menu">Transaksi</span>
 				 </li>
 				@can('kasir')	
-				<li class="sidebar-item ">
-					<a
-					  class="sidebar-link has-arrow waves-effect waves-dark "
-					  href="javascript:void(0)"
-					  aria-expanded="false"
-					>
-					  <i class="mdi me-2 mdi-cart"></i>
-					  <span class="hide-menu">Transaksi </span>
-					</a>
-					<ul aria-expanded="false" class="collapse first-level">
-					  <li class="sidebar-item">
-						 <a href="/transaksi" class="sidebar-link">
-							<i class="mdi mdi-adjust"></i>
-							<span class="hide-menu">Cucian Baru </span>
-						 </a>
-					  </li>
-					  <li class="sidebar-item">
-						 <a href="index2.html" class="sidebar-link">
-							<i class="mdi mdi-adjust"></i>
-							<span class="hide-menu"> Dashboard 2 </span>
-						 </a>
-					  </li>
-					</ul>
-				</li>
-				{{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
-					href="/transaksi" aria-expanded="false"><i
-					class="mdi me-2 mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
-				</li>	 --}}
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
+							href="/transaksi/" aria-expanded="false"><i
+								class="mdi me-2 mdi-book"></i><span class="hide-menu">Data Transaksi</span></a>
+					</li>
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
+							href="/transaksi/create" aria-expanded="false"><i
+								class="mdi me-2 mdi-cart"></i><span class="hide-menu">New Transaksi</span></a>
+					</li>
 				@elsecan('admin')
-				<li class="sidebar-item {{ Request ::is('transaksi*') ? 'active' : ' ' }}">
-					<a
-					  class="sidebar-link has-arrow waves-effect waves-dark"
-					  href="javascript:void(0)"
-					  aria-expanded="false"
-					>
-					  <i class="mdi me-2 mdi-cart"></i>
-					  <span class="hide-menu">Transaksi </span>
-					</a>
-					<ul aria-expanded="false" class="collapse first-level">
-					  <li class="sidebar-item">
-						 <a href="/transaksi" class="sidebar-link">
-							<i class="mdi mdi-adjust"></i>
-							<span class="hide-menu">Cucian Baru </span>
-						 </a>
-					  </li>
-					  <li class="sidebar-item">
-						 <a href="index2.html" class="sidebar-link">
-							<i class="mdi mdi-adjust"></i>
-							<span class="hide-menu"> Dashboard 2 </span>
-						 </a>
-					  </li>
-					</ul>
-				</li>
-				{{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
-					href="/transaksi" aria-expanded="false"><i
-					class="mdi me-2 mdi-cart"></i><span class="hide-menu">Transaksi</span></a>
-				</li> --}}
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+						href="/transaksi/" aria-expanded="false"><i
+							class="mdi me-2 mdi-book"></i><span class="hide-menu">Data Transaksi</span></a>
+					</li>
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+							href="/transaksi/create" aria-expanded="false"><i
+								class="mdi me-2 mdi-cart"></i><span class="hide-menu">New Transaksi</span></a>
+					</li>
 				@endcan
+				<li class="nav-small-cap">
+					<span class="hide-menu">Laporan</span>
+				 </li>
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{ Request ::is('laporan*') ? 'active' : ' ' }}"
 						href="/laporan" aria-expanded="false"><i
 							class="mdi me-2 mdi-book"></i><span class="hide-menu">Laporan</span></a>

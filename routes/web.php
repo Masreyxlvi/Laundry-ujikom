@@ -8,6 +8,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SimulasiController;
 use App\Http\Controllers\TransaksiController;
 use App\Models\Member;
 use App\Models\Outlet;
@@ -37,7 +38,13 @@ Route::get('/dashboard', function () {
     ]);
 });
 
-// Route::get('transaksi/update')
+// Route::get('/simulasi', function() {
+//     return view('dashboard.simulasi.index', [
+//         'title' => 'Simulasi'
+//     ]);
+// });
+Route::get('/simulasi', [SimulasiController::class, 'index'])->name('simulasi')->middleware('role:admin');
+
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -58,5 +65,7 @@ Route::get('/transaksi/faktur/{faktur}', [TransaksiController::class, 'faktur'])
 Route::get('/transaksi/cetak_pdf/{cetak_pdf}', [TransaksiController::class, 'exportPDF']);    
 Route::get('/outlet/cetak_pdf/', [OutletController::class, 'PDF']);    
 Route::get('/outlet/export_excel/', [OutletController::class, 'export']);    
+Route::get('/paket/export_excel/', [PaketController::class, 'export']);    
+
 
 Route::post('/outlet/import', [OutletController::class, 'import']);

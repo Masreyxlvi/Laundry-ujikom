@@ -22,11 +22,29 @@
 				{{session('succes')  }}
 			</div>
 			@endif
-
+			<div class="row mb-2">
+				<div class="col-lg-10">
+					@can('management-outlet')
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						Tambah Data
+					</button>
+					<!-- Button trigger modal -->
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importOutlet">
+						Import
+					</button>
+					@endcan
+				</div>
+				<div class="col-lg-2">
+					<a href="/outlet/cetak_pdf" target="_blank"
+					title="Cetak nota" class="btn btn-outline-success"><i class="ti-printer">PDF</i>
+					</a>
+					<a href="/paket/export_excel" class="btn btn-outline-success "><i class="fas fa-file-excel">Excel</i>
+					</a>
+				</div>
+			</div>
 			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-				Tambah Data
-			</button>
+			
 			<div class="table-responsive">
 				<table class="table user-table table-paket" id="order-listing">
 					<thead>

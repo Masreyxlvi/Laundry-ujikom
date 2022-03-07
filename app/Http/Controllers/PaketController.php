@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PaketExport;
 use App\Models\Paket;
 use App\Http\Requests\StorePaketRequest;
 use App\Http\Requests\UpdatePaketRequest;
+use App\Imports\OutletImport;
 use App\Models\outlet;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PaketController extends Controller
 {
@@ -118,4 +122,45 @@ class PaketController extends Controller
 
         return redirect('/paket')->with('succes', 'Data Has Been Deleted!!');
     }
+
+    public function Pdf(paket $paket)
+    {
+        $paket = paket::all();
+
+        $pdf = Pdf::loadView('dashboard.paket.exportPDF',[
+            'paket' => $paket
+        ]);
+
+        return $pdf->stream();
+    }
+
+    public function export() 
+    {
+        return Excel::download(new PaketExport, 'paket.xlsx');
+    }
+
+    // public function import(Request $request) 
+    // {
+    //     $this->validate($request, [
+	// 		'file' => 'required|mimes:csv,xls,xlsx'
+	// 	]);
+ 
+	// 	// menangkap file excel
+	// 	$file = $request->file('file');
+ 
+	// 	// membuat nama file unik
+	// 	$nama_file = rand().$file->getClientOriginalName();
+ 
+	// 	// upload ke folder file_siswa di dalam folder public
+	// 	$file->move('file',$nama_file);
+ 
+	// 	// import data
+	// 	Excel::import(new PaketImport, public_path('/file/'.$nama_file));
+ 
+	// 	// notifikasi dengan session
+	// 	// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+	// 	// alihkan halaman kembali
+	// 	return redirect('/outlet')->with('succes', 'Import Has Been Succes');
+    // }
 }

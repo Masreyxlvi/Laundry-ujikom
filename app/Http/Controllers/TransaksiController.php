@@ -12,7 +12,7 @@ use App\Models\outlet;
 use App\Models\Paket;
 use App\Models\User;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 class TransaksiController extends Controller
@@ -24,22 +24,20 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
-        // $transaksi = null;
+        $transaksi = null;
 
-        // if($request->has('status')) {
-        //     $transaksi = Transaksi::where('status', $request->status)->get();
-        // }else{
-        //     $transaksi = Transaksi::get();
-        // }
-        return view('dashboard.transaksi.index',[
+        if($request->has('status')) {
+            $transaksi = Transaksi::where('status', $request->status)->get();
+        }else{
+            $transaksi = Transaksi::get();
+        }
+        $data = 'Transaksi';
+
+        return view('dashboard.transaksi.index', [
             'title' =>'Transaksi',
-            'pakets' => Paket::where('outlet_id', auth()->user()->outlet_id)->get(),
-            'members' => Member::all(),
-            'outlets' => outlet::all(),
-            // 'users' => User::where('id' , auth()->user()->id)->get()
-            'transaksis' => Transaksi::where('status', 'baru')->get()
-
+            'transaksis' => $transaksi,
         ]);
+     
     }
 
     /**
@@ -49,7 +47,15 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.transaksi.create',[
+            'title' =>'Transaksi',
+            'pakets' => Paket::where('outlet_id', auth()->user()->outlet_id)->get(),
+            'members' => Member::all(),
+            'outlets' => outlet::all(),
+            // 'users' => User::where('id' , auth()->user()->id)->get()
+            'transaksis' => Transaksi::where('status', 'baru')->get()
+
+        ]);
     }
 
     /**
@@ -110,7 +116,7 @@ class TransaksiController extends Controller
          if($request->status == 'dibayar'){
              return redirect('/transaksi/faktur/'.$input_transkasi->id);
             }else{
-                return redirect('/transaksi')->with('succes', 'Transaksi Berhasil');
+                return redirect()->back()->with('succes', 'Transaksi Berhasil');
          }
 
     }
@@ -150,7 +156,18 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, Transaksi $transaksi)
     {
-        //
+        $validate = $request->validate([
+            // 'total' => 'required',
+            'tgl_bayar' => 'required', 
+            'diskon' => 'nullable',
+            'pajak' => 'nullable',
+            'biaya_tambahan' => 'nullable',
+            'dibayar' => 'required'
+        ]);
+
+        Transaksi::where('id', $transaksi->id)
+                        ->update($validate);
+        return redirect()->back()->with('succes', 'Data Has Been Updated');
     }
 
     /**
