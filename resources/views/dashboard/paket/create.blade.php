@@ -27,9 +27,9 @@
 					<label for="Nama Outlet">Nama Outlet</label>
 					<select class="form-control js-example-basic-single w-100" id="Nama Outlet" name="outlet_id">
 						{{-- <option value="" selected>-- Pilih --</option> --}}
-						@foreach ($users as $user)
-						<option value="{{ $user->outlet->id }}">{{ $user->outlet->nama }}</option>
-						@endforeach
+						{{-- @foreach ($users as $user) --}}
+						<option value="{{ Auth::user()->outlet->id }}">{{ Auth::user()->outlet->nama }}</option>
+						{{-- @endforeach --}}
 					</select>
 				</div>
 				<div class="col-8 mb-3">

@@ -12,7 +12,7 @@ class LaporanController extends Controller
     public function laporan()
     {
         // return  $data = Transaksi::with('member')->latest()->get();
-
+        $total = Transaksi::get()->sum('total');
         if (request()->start_date || request()->end_date) {
             $start_date = Carbon::parse(request()->start_date)->toDateTimeString();
             $end_date = Carbon::parse(request()->end_date)->toDateTimeString();
@@ -22,7 +22,7 @@ class LaporanController extends Controller
         }
         // $transaksis->load('member');
         // dd($data);
-        return view('dashboard.laporan.index',[
+        return view('dashboard.laporan.index', compact('total', $total), [
             'title' => 'Laporan',
             'transaksis' => $transaksi
         ]);

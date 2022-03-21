@@ -52,7 +52,7 @@
 									<td colspan="6" class="text-center"><i>Belum Ada Paket</i></td>
 								</tr>
 								<tr>
-									<td><input type="number" class="form-control" id="sub_total"></td>
+									{{-- <td><input type="number" class="form-control" id="sub_total"></td> --}}
 								</tr>
 									{{-- @endforeach --}}
 							</tbody>

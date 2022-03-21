@@ -44,6 +44,7 @@
 		 <h5>Data</h5>
 	 </div>
 	 <div class="card-body">
+		 <button type="button" class="btn btn-success" id="sorting">Sorting</button>
 		<div class="table-responsive">
 			<table class="table user-table" id="tbl-paket">
 				<thead>
@@ -94,6 +95,46 @@
 			return row
 		 }
 		//  end Show Data
+		function selectionSort(arr,key) { 
+			// console.log()
+			let n = arr.length;
+			// alert(arr)
+				
+			for(let i = 0; i < n; i++) {
+				// Finding the smallest number in the subarray
+				let min = i[key];
+				for(let j = i+1; j < n; j++){
+						if(arr[j] < arr[min]) {
+							min=j; 
+						}
+					}
+					if (min != i) {
+						// Swapping the elements
+						let tmp = arr[i][key]; 
+						arr[i] = arr[min];
+						arr[min] = tmp;      
+				}
+			}
+			return arr;
+		}
+		// SORTING
+		// function insertionSort(arr, key)
+		// {
+		// 	let i, j, id, value;
+		// 	for(i = 1; i < arr.length; i++)
+		// 	{
+		// 		value = arr[i];
+		// 		id = arr[i][key]
+		// 		j = i -1;
+		// 		while (j >= 0 && arr[j][key] > id)
+		// 		{
+		// 			arr[j + 1] = arr[j];
+		// 			j = j-1;
+		// 		}
+		// 		arr[j + 1] = value;
+		// 	}
+		// 	return arr
+		// }
 
 		 $(function(){
 			//  property
@@ -105,7 +146,14 @@
 				dataKaryawan.push(insert())
 				// console.log(dataKaryawan)
 				$('#tbl-paket tbody').html(showData(dataKaryawan))
-				console.log(dataKaryawan)
+				// console.log(dataKaryawan)
+			})
+			$('#sorting').on('click', function(){
+					// console.log(test)
+					 dataKaryawan = selectionSort( dataKaryawan, 'id')
+					// console.log(dataKaryawan)
+					$('#tbl-paket tbody').html(showData())
+					// console.log(dataKaryawan)
 			})
 		 })
 

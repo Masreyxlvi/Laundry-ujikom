@@ -8,7 +8,7 @@ class SimulasiController extends Controller
 {
     public function index()
     {
-        return view('dashboard.simulasi.index', [
+        return view('dashboard.simulasi.to', [
             'title' => 'Simulasi'
         ]);
     }

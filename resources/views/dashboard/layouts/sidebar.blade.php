@@ -11,7 +11,7 @@
 				</li>
 				<li class="nav-small-cap">
 					{{-- <i class="mdi mdi-dots-horizontal"></i> --}}
-					<span class="hide-menu">CRUD</span>
+					<span class="hide-menu">Master Data</span>
 				 </li>
 				@can('admin')
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -22,25 +22,25 @@
 						href="/paket" aria-expanded="false"><i class="mdi me-2 mdi-book-open-page-variant"></i><span
 							class="hide-menu">Paket</span></a>
 				</li>
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					href="/barang" aria-expanded="false"><i
+					class="mdi me-2 mdi-box"></i><span class="hide-menu">Barang Inventaris</span></a>
+				</li>
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					href="/penjemputan" aria-expanded="false"><i
+					class="mdi me-2 mdi-car"></i><span class="hide-menu">Penjemputan</span></a>
+				</li>
 				@endcan
 				@can('kasir')	
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 					href="/member" aria-expanded="false"><i
 					class="mdi me-2 mdi-account-box"></i><span class="hide-menu">Member</span></a>
 				</li>
-				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-					href="/barang" aria-expanded="false"><i
-					class="mdi me-2 mdi-box"></i><span class="hide-menu">Barang Inventaris</span></a>
-				</li>
 				@elsecan('admin')
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 					href="/member" aria-expanded="false"><i
 					class="mdi me-2 mdi-account-box"></i><span class="hide-menu">Member</span></a>
-				</li>
-				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-					href="/barang" aria-expanded="false"><i
-					class="mdi me-2 mdi-box"></i><span class="hide-menu">Barang Inventaris</span></a>
-				</li>
+				</li>	
 				@endcan
 				@can('admin')
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('register*') ? 'active' : ' ' }}"

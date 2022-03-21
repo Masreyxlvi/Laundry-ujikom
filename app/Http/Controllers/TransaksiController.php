@@ -113,11 +113,11 @@ class TransaksiController extends Controller
            $input_detail_pembelian =  Detail_Transaksi::create($validate);
         //    dd($validate);
          }
-         if($request->status == 'dibayar'){
+         if($request->dibayar == 'dibayar'){
              return redirect('/transaksi/faktur/'.$input_transkasi->id);
             }else{
                 return redirect()->back()->with('succes', 'Transaksi Berhasil');
-         }
+            }
 
     }
 

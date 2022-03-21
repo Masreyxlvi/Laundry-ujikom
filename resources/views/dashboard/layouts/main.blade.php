@@ -213,7 +213,8 @@
 		})
 	})
 </script>
-      @stack('script')
+
+@stack('script')
 </body>
 
 </html>

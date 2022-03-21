@@ -143,7 +143,7 @@
 				let subTotalAwal = parseFloat($(a).closest('tr').find('.subTotal').val());
 				// let biaya_tambahan = Number($('#biayaTambahan').val());
 				let count = qty * harga;    
-				totalHarga = totalHarga  - subTotalAwal + count ;
+				totalHarga = totalHarga  - subTotalAwal + count ;   
 				// let pajak = number($('#pajak').val())/100*subTotal;
 				// let diskon = number($('#diskon').val())/100*subTotal;
 				// total = totalHarga - diskon + 

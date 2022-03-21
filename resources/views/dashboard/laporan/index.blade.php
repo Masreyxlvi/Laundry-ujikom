@@ -47,7 +47,13 @@
 							<td>{{ $transaksi->member->nama}}</td>
 							{{-- <td>{{ $transaksi->user->name }}</td>
 							<td>{{ $transaksi->user->outlet->nama }}</td> --}}
-							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->tgl) ) }}</td>
+							<td class="text-center">
+								@if ($transaksi->tgl == date('01-Jan-1970'))
+									 -
+								@else
+								{{date('d-M-Y', strtotime($transaksi->tgl) ) }}
+								@endif
+							</td>
 							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->tgl_bayar) ) }}</td>
 							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->batas_waktu) ) }}</td>
 							<td>{{ $transaksi->status }}</td>
@@ -70,6 +76,16 @@
 						@endforeach
 					</tbody>
 				</table>
+			</div>
+			<div class="col-md-12">
+				<div class="pull-right mt-2 text-end">
+				  <hr /> 
+				  <div class="text-end">
+					  <h3><b>Total Pendapatan :</b> Rp. {{ number_format($total ) }}</h3>
+				  </div>
+				</div>
+				<div class="clearfix"></div>    
+				<hr />
 			</div>
 			
 			@include('dashboard.laporan.detail_transaksi')
