@@ -1,5 +1,4 @@
-  {{-- <div class="collapse" id="Proses"> --}}
-	  <h3>Pembayaran</h3>
+<h3>Pembayaran</h3>
 	<div class="card card-body">
 		<div class="row">
 			<div class="col-lg-6">
@@ -20,11 +19,7 @@
 				</select>
 				<label for="status" class="col-form-label"><b> Status </b></label>
 					<select class="form-control js-example-basic-single w-100" id="status" name="status">
-						{{-- <option value="" disabled selected>-- Pilih --</option> --}}
 						<option value="baru">Baru</option>
-						{{-- <option value="proses">Proses</option>
-						<option value="selesai">Selesai</option>
-						<option value="diambil">Diambil</option> --}}
 					</select>
 					<div class="mb-1">
 						<label for="dibayar" class="col-form-label"><b> Status Pembayaran </b></label>
@@ -76,25 +71,18 @@
 									<span class="input-group-text">%</span>
 									<input type="text" class="form-control text-end" readonly id="totalPajak" placeholder="Rp.0" aria-label="Server">
 								</div>
-								{{-- <input type="number" name="pajak" class="form-control pajak "  value="0">		 --}}
 								<div class="mt-2">
 									<div class="card">
-										<div class="card-body bg-primary" >
-											{{-- <h4 class="text-center" >Keterangan  </h4> --}}
+										<div class="card-body bg-primary" >     
 											<input type="text"  id="totalHarga" name="total" style="color: white" class="form-control-plaintext  form-control-lg text-center total" value="Rp. 0" readonly>
 										</div>
 									</div>
 								</div>
 					</div>
 				</div>
-				{{-- <div class="row justify-content-end"> --}}
-					{{-- <div class="col-lg-10"> --}}
-					{{-- </div> --}}
-				{{-- </div> --}}
 			</div>
 		</div>
 	</div>
-{{-- </div>    --}}
 
 @push('script')
 	<script>

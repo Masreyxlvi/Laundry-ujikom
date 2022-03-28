@@ -48,7 +48,7 @@
 							{{-- <td>{{ $transaksi->user->name }}</td>
 							<td>{{ $transaksi->user->outlet->nama }}</td> --}}
 							<td class="text-center">
-								@if ($transaksi->tgl == date('01-Jan-1970'))
+								@if ($transaksi->tgl == null)
 									 -
 								@else
 								{{date('d-M-Y', strtotime($transaksi->tgl) ) }}

@@ -10,46 +10,84 @@
 							class="hide-menu">Dashboard</span></a>
 				</li>
 				<li class="nav-small-cap">
+					<span class="hide-menu">Simulasi</span>
+				 </li>
+				<li class="sidebar-item">
+					<a
+					  class="sidebar-link has-arrow waves-effect waves-dark"
+					  href="javascript:void(0)"
+					  aria-expanded="false"
+					>
+					  <i class="mdi mdi-gauge"></i>
+					  <span class="hide-menu">Simulasi </span>
+					</a>
+					<ul aria-expanded="false" class="collapse first-level">
+					  <li class="sidebar-item">
+						 <a href="/gaji_karyawan" class="sidebar-link">
+							<i class="mdi mdi-adjust"></i>
+							<span class="hide-menu">Gaji Karyawan</span>
+						 </a>
+					  </li>
+					  <li class="sidebar-item">
+						 <a href="/data_barang" class="sidebar-link">
+							<i class="mdi mdi-adjust"></i>
+							<span class="hide-menu">Data Barang </span>
+						 </a>
+					  </li>
+					  <li class="sidebar-item">
+						 <a href="/transaksi_cucian" class="sidebar-link">
+							<i class="mdi mdi-adjust"></i>
+							<span class="hide-menu">Transaksi Cucian </span>
+						 </a>
+					  </li>
+					</ul>
+				 </li>
+				<li class="nav-small-cap">
 					{{-- <i class="mdi mdi-dots-horizontal"></i> --}}
-					<span class="hide-menu">Master Data</span>
+					<span class="hide-menu">Administrator</span>
 				 </li>
 				@can('admin')
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 						href="/outlet" aria-expanded="false">
-						<i class="mdi me-2 mdi-home-modern"></i><span class="hide-menu">Outlet</span></a>
+						<i class="mdi me-2 mdi-home-variant"></i><span class="hide-menu">Outlet</span></a>
 				</li>
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-						href="/paket" aria-expanded="false"><i class="mdi me-2 mdi-book-open-page-variant"></i><span
+						href="/paket" aria-expanded="false"><i class="mdi me-2 mdi-tshirt-v"></i><span
 							class="hide-menu">Paket</span></a>
 				</li>
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-					href="/barang" aria-expanded="false"><i
-					class="mdi me-2 mdi-box"></i><span class="hide-menu">Barang Inventaris</span></a>
+					href="/barang_inventaris" aria-expanded="false"><i
+					class="mdi me-2 mdi-cube"></i><span class="hide-menu">Barang Inventaris</span></a>
 				</li>
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-					href="/penjemputan" aria-expanded="false"><i
-					class="mdi me-2 mdi-car"></i><span class="hide-menu">Penjemputan</span></a>
+					href="/barang" aria-expanded="false"><i
+					class="mdi me-2 mdi-cube-outline"></i><span class="hide-menu">Penggunaan Barang</span></a>
+				</li>
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('register*') ? 'active' : ' ' }}"
+					href="/register" aria-expanded="false"><i
+						class="mdi me-2 mdi-account"></i><span class="hide-menu">User</span></a>
 				</li>
 				@endcan
+				<li class="nav-small-cap">
+					<span class="hide-menu">Outlet</span>
+				 </li>
 				@can('kasir')	
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 					href="/member" aria-expanded="false"><i
 					class="mdi me-2 mdi-account-box"></i><span class="hide-menu">Member</span></a>
+				</li>
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					href="/penjemputan" aria-expanded="false"><i
+					class="mdi me-2 mdi-car"></i><span class="hide-menu">Penjemputan</span></a>
 				</li>
 				@elsecan('admin')
 				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
 					href="/member" aria-expanded="false"><i
 					class="mdi me-2 mdi-account-box"></i><span class="hide-menu">Member</span></a>
 				</li>	
-				@endcan
-				@can('admin')
-				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('register*') ? 'active' : ' ' }}"
-						href="/register" aria-expanded="false"><i
-							class="mdi me-2 mdi-account"></i><span class="hide-menu">User</span></a>
-				</li>
-				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('simulasi*') ? 'active' : ' ' }}"
-						href="/simulasi" aria-expanded="false"><i
-							class="mdi me-2 mdi-account"></i><span class="hide-menu">Simulasi</span></a>
+				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					href="/penjemputan" aria-expanded="false"><i
+					class="mdi me-2 mdi-car"></i><span class="hide-menu">Penjemputan</span></a>
 				</li>
 				@endcan
 				{{-- transaksi --}}
@@ -57,33 +95,31 @@
 					<span class="hide-menu">Transaksi</span>
 				 </li>
 				@can('kasir')	
-					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link "
 							href="/transaksi/" aria-expanded="false"><i
 								class="mdi me-2 mdi-book"></i><span class="hide-menu">Data Transaksi</span></a>
 					</li>
-					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link  {{ Request ::is('transaksi*') ? 'active' : ' ' }}"
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link "
 							href="/transaksi/create" aria-expanded="false"><i
 								class="mdi me-2 mdi-cart"></i><span class="hide-menu">New Transaksi</span></a>
 					</li>
 				@elsecan('admin')
-					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"`
 						href="/transaksi/" aria-expanded="false"><i
 							class="mdi me-2 mdi-book"></i><span class="hide-menu">Data Transaksi</span></a>
 					</li>
-					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"`
 							href="/transaksi/create" aria-expanded="false"><i
 								class="mdi me-2 mdi-cart"></i><span class="hide-menu">New Transaksi</span></a>
 					</li>
-				@endcan
-				<li class="nav-small-cap">
-					<span class="hide-menu">Laporan</span>
-				 </li>
-				<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{ Request ::is('laporan*') ? 'active' : ' ' }}"
+					@endcan
+					<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link {{ Request ::is('laporan*') ? 'active' : ' ' }}"
 						href="/laporan" aria-expanded="false"><i
 							class="mdi me-2 mdi-book"></i><span class="hide-menu">Laporan</span></a>
-				</li>
+					</li>
+			
 			</ul>
-
+			
 		</nav>
 		<!-- End Sidebar navigation -->
 	</div>

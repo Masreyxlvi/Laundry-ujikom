@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    //  menampilkan halaman Dashboard 
+    // dengan menmpilkan total pendapatan , total transaksi, jumlah data paket dan member
     public function index()
     {
         $total = Transaksi::where('tgl', date('Y-m-d'))->get()->sum('total');

@@ -3,10 +3,10 @@
 @section('content')
 {{-- <h3>Laporan</h3> --}}
 	<div class="card">
-		<div class="card-title mt-3">
-			<h3>Data Cucian Baru</h3>
-		</div>
 		<div class="card-body">
+			<div class="card-title">
+				<h3>Data Cucian Baru</h3>
+			</div>
 			@if($errors->any())
 			<div class="alert alert-danger" role="alert" id="error-alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="close">
@@ -21,14 +21,12 @@
 			@endif
 			<div class="row">
 				<div class="col-lg-10">
-					@can('management-outlet')
 					<!-- Button trigger modal -->
 					<a href="/transaksi/create" class="btn btn-primary">New Transaksi</a>
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importOutlet">
 						Import
 					</button>
-					@endcan
 				</div>
 				<div class="col-lg-2">
 					<a href="/outlet/cetak_pdf" target="_blank"
@@ -44,8 +42,6 @@
 						<tr>
 							<th class="border-top-0">Kode Invoice</th>
 							<th class="border-top-0">Nama Member</th>
-							{{-- <th class="border-top-0">Nama User</th>
-							<th class="border-top-0">Outlet</th> --}}
 							<th class="border-top-0">Tgl Transaksi</th>
 							<th class="border-top-0">Tgl bayar</th>
 							<th class="border-top-0">Batas Waktu</th>
@@ -59,16 +55,14 @@
 						<tr class="">
 							<td>{{ $transaksi->kode_invoice }}</td>
 							<td>{{ $transaksi->member->nama}}</td>
-							{{-- <td>{{ $transaksi->user->name }}</td>
-							<td>{{ $transaksi->user->outlet->nama }}</td> --}}
 							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->tgl) ) }}</td>
 							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->tgl_bayar) ) }}</td>
 							<td class="text-center">{{date('d-M-Y', strtotime($transaksi->batas_waktu) ) }}</td>
 							<td>{{ $transaksi->status }}</td>
 							<td>
 								@if ($transaksi->dibayar == 'dibayar')
-								<span class="badge bg-primary px-2 py-1"
-                                ><i class="mdi mdi-cart-outline"></i></span>
+								<span class="badge bg-success border-1 px-2 py-1"
+                                ><i class="mdi mdi-briefcase-check"></i></span>
 								@else
 									@include('dashboard.transaksi.update_pembayaran')
 								@endif
@@ -77,6 +71,8 @@
 							<button type="button" class="btn btn-outline-primary  px-2 py-1" data-bs-toggle="modal" data-bs-target="#Transaksi{{ $key }}">
 								<i class="mdi mdi-eye"></i>
 							  </button>
+							  <a href="/transaksi/faktur/{{ $transaksi->id }}" class="btn btn-outline-danger px-2 py-1"><i
+								class="fas fa-print"></i> </a>
 						</td>
 						</tr>
 						@endforeach

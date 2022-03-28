@@ -7,14 +7,6 @@
 <form action="/transaksi" method="post" id="formTransaksi">
 	@csrf
 	<h4 class="card-title">Transaksi</h4>
-	{{-- <ul class="nav nav-tabs">
-		<li class="nav-item">
-		  <a class="nav-link active link-danger" data-bs-toggle="collapse" id="nav-data" href="#CucianBaru" role="button" aria-expanded="false" aria-controls="collapseExample"> Cucian Baru</a>
-		</li>
-		<li class="nav-item">
-		  <a class="nav-link link-danger" data-bs-toggle="collapse" name="bayar"  href="#Proses" role="button" id="nav-pembayaran" aria-expanded="false" aria-controls="collapseExample">&nbsp;&nbsp; <label for="dibayar">Langsung Bayar</label> </a>
-		</li>
-	</ul> --}}
 	<div class="col-lg-12">
 		@if($errors->any())
 		<div class="alert alert-danger" role="alert" id="error-alert">
@@ -45,12 +37,10 @@
 	
 			@include('dashboard.transaksi.pilih')	
 			
-			{{-- @include('dashboard.transaksi.proses') --}}
 			
 	</div>
 </form>
 
-  <!-- Modal -->
   @include('dashboard.transaksi.paket')
   @include('dashboard.transaksi.member')
   @endsection
@@ -82,14 +72,12 @@
 				let id = ele.find('input[name=idMember]').val();
 				let nama = ele.find('td:eq(0)').text();
 				let telp = ele.find('td:eq(1)').text();
-				// let jenis = ele.find('td:eq(2)').text();
 				let alamat = ele.find('td:eq(3)').text();
 				
 				$('#NamaMember').val(nama)
 				$('#nama').val(nama)
 				$('#telp').val(telp)
 				$('input[name=member_id]').val(id)
-				// $('#JK').val(jenis)
 				$('#alamat').val(alamat)
 				$('#member').modal('hide')
 			});
@@ -123,7 +111,6 @@
 					data += '<input type="hidden" class="harga" name="harga" value=" '+harga+' ">';
 					data += '<input type="hidden" value=" '+harga*parseInt($('#qty').val())+' ">';
 					data += '<td><input type="number" value="1" min="1" class="form-control-sm border-0 qty" autofocus name="qty[]" ></td>';
-					// data += '<td><input type="text" value="0"  class="diskon" name="diskon[]" ></td>';
 					data += '<td><input type="text" readonly class="subTotal form-control-plaintext" name="sub_total[]" value=" '+harga+' "></td>';
 					data += '<td><input type="text" placeholder="Keterangan" class="form-control  " autofocus name="keterangan[]" ></td>';
 					data += '<td><button type="button" class="hapusBarang btn btn-outline-danger"><i class="mdi  mdi-delete"></i></button></td>';
@@ -141,12 +128,8 @@
 				let diskon = parseInt($(a).closest('tr').find('.diskon').val());
 				let harga = parseFloat($(a).closest('tr').find('td:eq(2)').text());
 				let subTotalAwal = parseFloat($(a).closest('tr').find('.subTotal').val());
-				// let biaya_tambahan = Number($('#biayaTambahan').val());
 				let count = qty * harga;    
-				totalHarga = totalHarga  - subTotalAwal + count ;   
-				// let pajak = number($('#pajak').val())/100*subTotal;
-				// let diskon = number($('#diskon').val())/100*subTotal;
-				// total = totalHarga - diskon + 
+				totalHarga = totalHarga  - subTotalAwal + count ;    
 				$(a).closest('tr').find('.subTotal').val(count);
 				$('#totalHarga').val(totalHarga);
 			}
@@ -162,9 +145,7 @@
 					let total = subTotal + biayaTambahan
 					let totalPajak = pajak/100*total;
 					let totalDiskon = diskon/100*total;
-					// alert(total)
 					totalHarga = total - totalDiskon + totalPajak ;
-					// alert(totalPajak)
 					$('#totalPajak') .val(totalPajak);
 					$('#totalDiskon') .val(totalDiskon);
 					$('#totalHarga') .val(totalHarga);
@@ -178,8 +159,6 @@
 				// pemilihan paket
 				$('#paket').on('click', '.pilih-paket', function(){
 						TambahPaket(this)
-					
-					// updateRowNumber();
 				});
 				// change qty event
 				$('#formTransaksi').on('keydown change', '.qty', function(){
@@ -203,7 +182,6 @@
 					let subTotalAwal = parseFloat($(this).closest('tr').find('.subTotal').val());
 					let diskon = Number($('.diskon').val());
 					totalHarga -= subTotalAwal;
-					// alert(totalHarga)
 					$currentRow = $(this).closest('tr').remove();
 					$('#totalHarga') .val(totalHarga);
 				});

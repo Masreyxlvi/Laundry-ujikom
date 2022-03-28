@@ -2,24 +2,25 @@
 
 namespace App\Imports;
 
+use App\Models\Inventory;
 use App\Models\outlet;
+use App\Models\Service;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-
-class OutletImport implements ToModel
+class OutletImport implements ToModel,  WithHeadingRow
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return Service|null
+     */
     public function model(array $row)
     {
         return new outlet([
-            'nama' => $row[1],
-            'alamat' => $row[2],
-            'telp' => $row[3]
+            'nama' => $row['nama_outlet'],
+            'alamat' => $row['alamat'],
+            'telp' => $row['telepon'],
         ]);
     }
 }

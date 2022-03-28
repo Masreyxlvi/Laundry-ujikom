@@ -24,16 +24,14 @@
 			@endif
 			<div class="row mb-2">
 				<div class="col-lg-10">
-					@can('management-outlet')
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						Tambah Data
 					</button>
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importOutlet">
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importPaket">
 						Import
 					</button>
-					@endcan
 				</div>
 				<div class="col-lg-2">
 					<a href="/outlet/cetak_pdf" target="_blank"
@@ -88,6 +86,7 @@
 	</div>
 </div>
 @include('dashboard.paket.create')
+@include('dashboard.paket.import')
 @endsection
 
 

@@ -1,4 +1,3 @@
-{{-- <div class="collapse" id="CucianBaru"> --}}
 	<div class="card">
 		<div class="card-body">
 			<div class="row">
@@ -10,17 +9,13 @@
 			<label for="nama" class="col-lg-1 col-form-label"> </label>
 			<label for="nama" class="col-lg-2 col-form-label">Batas Waktu </label>
 			<div class="col-lg-3 text-end"> 
-				{{-- @foreach ($users as $user) --}}
 				<input type="date" name="batas_waktu" class="form-control @error('batas_waktu') is-invalid @enderror"  id=""  value="{{ date('Y-m-d' , strtotime(date('Y-m-d') . '+3 day')) }}">
-					{{-- <input type="text" name="outlet_id" class="form-control text-center @error('outlet_id') is-invalid @enderror"  id="tgl"  value="{{ strtoupper($user->outlet->nama) }}"> --}}
-				{{-- @endforeach --}}
 			</div>  
 		</div>
 	</div>
 		<div class="card card-body">
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
-					
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Pilih Paket" aria-label="Recipient's username" aria-describedby="basic-addon2" readonly id="namamember" >
 						<button type="button" class="btn btn-outline-info mb-2" data-bs-toggle="modal" data-bs-target="#paket">
@@ -36,7 +31,6 @@
 							<table class="table " id="tbl-transaksi">
 							<thead>
 									<tr>
-									{{-- <th>#</th> --}}
 									<th>Nama Paket</th>
 									<th>Jenis</th>
 									<th>Harga</th>
@@ -47,20 +41,16 @@
 									</tr>
 							</thead>
 							<tbody>
-									{{-- @foreach ($produks as $produk) --}}
 								<tr>
 									<td colspan="6" class="text-center"><i>Belum Ada Paket</i></td>
 								</tr>
 								<tr>
-									{{-- <td><input type="number" class="form-control" id="sub_total"></td> --}}
 								</tr>
-									{{-- @endforeach --}}
 							</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
-
 		</div>
 		
 			{{-- pilih Paket Dan Member --}}
@@ -77,7 +67,6 @@
 				</div>
 		</div>
 	</div>
-{{-- </div> --}}
 @push('script')
 	<script>
 		Date.prototype.toDateInputValue = (function() {

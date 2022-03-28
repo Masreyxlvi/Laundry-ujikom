@@ -7,6 +7,7 @@ use App\Models\Paket;
 use App\Http\Requests\StorePaketRequest;
 use App\Http\Requests\UpdatePaketRequest;
 use App\Imports\OutletImport;
+use App\Imports\PaketImport;
 use App\Models\outlet;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -139,28 +140,30 @@ class PaketController extends Controller
         return Excel::download(new PaketExport, 'paket.xlsx');
     }
 
-    // public function import(Request $request) 
-    // {
-    //     $this->validate($request, [
-	// 		'file' => 'required|mimes:csv,xls,xlsx'
-	// 	]);
+    public function import(Request $request) 
+    {
+        $this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
  
-	// 	// menangkap file excel
-	// 	$file = $request->file('file');
+		// menangkap file excel
+		$file = $request->file('file');
  
-	// 	// membuat nama file unik
-	// 	$nama_file = rand().$file->getClientOriginalName();
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
  
-	// 	// upload ke folder file_siswa di dalam folder public
-	// 	$file->move('file',$nama_file);
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file',$nama_file);
  
-	// 	// import data
-	// 	Excel::import(new PaketImport, public_path('/file/'.$nama_file));
+		// import data
+		Excel::import(new PaketImport, public_path('/file/'.$nama_file));
  
-	// 	// notifikasi dengan session
-	// 	// Session::flash('sukses','Data Siswa Berhasil Diimport!');
- 
-	// 	// alihkan halaman kembali
-	// 	return redirect('/outlet')->with('succes', 'Import Has Been Succes');
-    // }
+		// alihkan halaman kembali
+		return redirect('/paket')->with('succes', 'Import Has Been Succes');
+    }
+
+    public function downloadTemplate()
+    {
+        return response()->download(public_path('template\paket.xlsx'));
+    }
 }

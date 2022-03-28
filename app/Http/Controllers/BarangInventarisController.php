@@ -11,13 +11,13 @@ class BarangInventarisController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * menampilkan halaman utama Barang Inventasi
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('dashboard.barang.index',[
-            'title' => 'Barang',
+        return view('dashboard.barang_inventaris.index',[
+            'title' => 'Barang Inventaris',
             'barang_inventaris' => Barang_Inventaris::all()
         ]);
     }
@@ -34,7 +34,8 @@ class BarangInventarisController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * melakukan validasi data yang ada pada $request
+     * dan di simpan data ke database 
     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -48,11 +49,9 @@ class BarangInventarisController extends Controller
             'tanggal_pengadaan' => 'required',
         ]);
         // dd($validate);
-        // $validate['outlet_id'] = ;
-
         Barang_Inventaris::create($validate);
 
-        return redirect('/barang')->with('succes', 'Data Has Been Created!');
+        return redirect('/barang_inventaris')->with('succes', 'Data Has Been Created!');
     }
 
     /**
@@ -80,12 +79,12 @@ class BarangInventarisController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * melakukan perubahan data sesuai id yang dipilih
       *  @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Barang_Inventaris  $barang_Inventaris
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Barang_Inventaris $barang)
+    public function update(Request $request, Barang_Inventaris $b, $id)
     {
         $validate = $request->validate([
             'nama_barang' => 'required',
@@ -94,25 +93,24 @@ class BarangInventarisController extends Controller
             'kondisi' => 'required',
             'tanggal_pengadaan' => 'required',
         ]);
-        // dd($validate);
-        // $validate['outlet_id'] = ;
-
-        Barang_Inventaris::where('id', $barang->id)
+        $b = Barang_Inventaris::find($id);
+        Barang_Inventaris::where('id', $b->id)
                                  ->update($validate);
 
-        return redirect('/barang')->with('succes', 'Data Has Been Update!');
+        return redirect('/barang_inventaris')->with('succes', 'Data Has Been Update!');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+     * menghapus data sesuai id yang dipilih
      * @param  \App\Models\Barang_Inventaris  $barang_Inventaris
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang_Inventaris $barang)
+    public function destroy(Barang_Inventaris $b, $id)
     {
-        Barang_Inventaris::destroy($barang->id);
+        $b = Barang_Inventaris::find($id);
+        Barang_Inventaris::destroy($b->id);
 
-        return redirect('/barang')->with('succes', 'Data Has Been Deleted!!');
+        return redirect('/barang_inventaris')->with('succes', 'Data Has Been Deleted!!');
     }
 }

@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * menampilkan halaman login  
+     */
     public function index()
     {
         return view('login.index',[
@@ -14,6 +17,9 @@ class LoginController extends Controller
         ]);
     }
 
+    /**
+     * melakukan pengecekan apakah data Request sesuai dengan data di database
+     *  */ 
     public function authenticate(Request $request)
     {
         $login =$request->validate([
@@ -21,7 +27,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        // dd('Login Berhasil');
+
 
         if(Auth::attempt($login))
         {
@@ -33,7 +39,9 @@ class LoginController extends Controller
         return back()->with('error', 'Login Failed!');
     }
 
-    
+    /*
+    * menghapus session dan redirect ke halaman login
+     */ 
     public function logout(Request $request)
     {
         $request->session()->invalidate();

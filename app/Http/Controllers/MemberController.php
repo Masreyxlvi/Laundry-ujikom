@@ -12,12 +12,11 @@ class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * menampilkan halaman Member
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        // Gate::authorize('admin','kasir');
         return view('dashboard.member.index',[
             'members' => Member::all(),
             'title' => 'Member'
@@ -36,7 +35,8 @@ class MemberController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     *melakukan validasi data yang ada pada $request
+     * dan di simpan data ke database 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -48,7 +48,6 @@ class MemberController extends Controller
             'telp' => 'required',
             'jenis_kelamin' => 'required',
         ]);
-        // dd($validate);
 
         Member::create($validate);
 
@@ -79,7 +78,7 @@ class MemberController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * melakukan perubahan data sesuai id yang dipilih
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
@@ -92,7 +91,6 @@ class MemberController extends Controller
             'telp' => 'required',
             'jenis_kelamin' => 'required',
         ]);
-        // dd($validate);
 
         Member::where('id', $member->id)
                         ->update($validate);
@@ -102,7 +100,7 @@ class MemberController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * menghapus data sesuai id yang dipilih
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */

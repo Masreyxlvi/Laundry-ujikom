@@ -12,6 +12,7 @@ use App\Models\Member;
 use App\Models\Transaksi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PenjemputanController extends Controller
@@ -55,7 +56,7 @@ class PenjemputanController extends Controller
             'petugas' => 'required',
             'status' => 'required',
         ]);
-        // dd($validate);
+
 
         Penjemputan::create($validate);
 
@@ -160,12 +161,14 @@ class PenjemputanController extends Controller
  
 		// import data
 		Excel::import(new PenjemputanImport, public_path('/file/'.$nama_file));
- 
-		// notifikasi dengan session
-		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+      
  
 		// alihkan halaman kembali
 		return redirect('/penjemputan')->with('succes', 'Import Has Been Succes');
+    }
+    public function downloadTemplate()
+    {
+        return response()->download(public_path('template\Import_penjemputan_cleandry.xlsx'));
     }
      
 }

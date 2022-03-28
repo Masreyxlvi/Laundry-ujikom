@@ -149,11 +149,13 @@ class OutletController extends Controller
 		// import data
 		Excel::import(new OutletImport, public_path('/file/'.$nama_file));
  
-		// notifikasi dengan session
-		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
- 
 		// alihkan halaman kembali
 		return redirect('/outlet')->with('succes', 'Import Has Been Succes');
+    }
+
+    public function downloadTemplate()
+    {
+        return response()->download(public_path('template\outlet.xlsx'));
     }
      
 }
